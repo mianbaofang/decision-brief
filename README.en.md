@@ -13,10 +13,6 @@
   <img src="https://img.shields.io/badge/multimodal-vision-purple" alt="multimodal">
 </p>
 
-<p align="center">
-  <a href="README.md">中文</a> · <a href="https://mianbaofang.github.io/decision-brief/">中文介绍动画</a> · <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
-</p>
-
 ---
 
 ## In One Sentence
@@ -26,9 +22,17 @@
 Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose), and get a structured decision brief in seconds. Every decision is auto-archived. Mark it executed or regretted later. Review your patterns over time.
 
 <p align="center">
-  <video src="docs/demo.mp4" alt="Decision Brief demo" width="920" autoplay loop muted playsinline>
-    <img src="docs/images/home-en.png" width="920" alt="Decision Brief demo">
-  </video>
+  <a href="https://mianbaofang.github.io/decision-brief/index-en.html">
+    <img src="docs/images/intro-animation-preview-en.gif" alt="Decision Brief English intro animation preview" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <a href="README.md">中文</a>
+  ·
+  <a href="https://mianbaofang.github.io/decision-brief/">中文介绍动画</a>
+  ·
+  <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
 </p>
 
 ## Why I Built This

@@ -13,10 +13,6 @@
   <img src="https://img.shields.io/badge/multimodal-vision-purple" alt="multimodal">
 </p>
 
-<p align="center">
-  <a href="README.en.md">English</a> · <a href="https://mianbaofang.github.io/decision-brief/">中文介绍动画</a> · <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
-</p>
-
 ---
 
 ## 一句话介绍
@@ -26,9 +22,17 @@
 输入一句话（也可以配图片、直接说语音），选择六种视角之一（或交给"自动"判断），几秒钟拿到一份结构化的决策简报。所有决策自动归档，可标记执行结果、回看后悔率、复盘决策模式。
 
 <p align="center">
-  <video src="docs/demo.mp4" alt="别纠结功能介绍动画" width="920" autoplay loop muted playsinline>
-    <img src="docs/images/home-zh.png" width="920" alt="别纠结功能介绍">
-  </video>
+  <a href="https://mianbaofang.github.io/decision-brief/">
+    <img src="docs/images/intro-animation-preview-zh.gif" alt="别纠结中文介绍动画预览" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <a href="README.en.md">English</a>
+  ·
+  <a href="https://mianbaofang.github.io/decision-brief/">中文介绍动画</a>
+  ·
+  <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
 </p>
 
 ## 为什么做这个工具
