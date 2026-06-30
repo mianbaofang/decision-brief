@@ -54,6 +54,10 @@ The current design offers several entry points: if you want serious analysis, us
 The boundary I care about most: it can only assist your choice; it cannot bear the choice for you. Especially with life decisions, what really matters isn't whether the answer "looks right," but whether you've thought through why you're choosing it. If it can move someone from "I don't know what to do" to "I know what first step I can take," it has done its job.
 
 <p align="center">
+  👉 <a href="https://mianbaofang.github.io/decision-brief/index-en.html"><strong>Watch the Interactive Intro Animation</strong></a> 👈
+</p>
+
+<p align="center">
   <video src="docs/demo.mp4" alt="Decision Brief demo" width="920" autoplay loop muted playsinline>
     <img src="docs/images/home-en.png" width="920" alt="Decision Brief demo">
   </video>

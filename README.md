@@ -54,6 +54,10 @@
 我最在意的边界是：它只能辅助选择，不能替人承担选择。尤其是很多生活里的决定，真正重要的不是"答案看起来对不对"，而是用户有没有想明白自己为什么这样选。如果能让一个人从"我不知道怎么办"变成"我知道可以先做哪一步"，它就有价值了。
 
 <p align="center">
+  👉 <a href="https://mianbaofang.github.io/decision-brief/"><strong>观看交互式介绍动画</strong></a> 👈
+</p>
+
+<p align="center">
   <video src="docs/demo.mp4" alt="别纠结功能介绍动画" width="920" autoplay loop muted playsinline>
     <img src="docs/images/home-zh.png" width="920" alt="别纠结功能介绍">
   </video>
