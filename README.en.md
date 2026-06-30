@@ -30,7 +30,7 @@ Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose
 <p align="center">
   <a href="README.md">中文</a>
   ·
-  <a href="https://mianbaofang.github.io/decision-brief/">中文介绍动画</a>
+  <a href="https://mianbaofang.github.io/decision-brief/">Chinese Intro</a>
   ·
   <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
 </p>
