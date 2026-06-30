@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="README.md">中文</a>
+  <a href="README.md">中文</a> · <a href="https://mianbaofang.github.io/decision-brief/">中文介绍动画</a> · <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
 </p>
 
 ---
@@ -24,6 +24,12 @@
 **Decision Brief (别纠结)** is a local-first decision-making assistant. It does not decide for you — it untangles your overthinking into verifiable evidence, visible risks, and a concrete first move.
 
 Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose), and get a structured decision brief in seconds. Every decision is auto-archived. Mark it executed or regretted later. Review your patterns over time.
+
+<p align="center">
+  <video src="docs/demo.mp4" alt="Decision Brief demo" width="920" autoplay loop muted playsinline controls>
+    <img src="docs/images/home-en.png" width="920" alt="Decision Brief demo">
+  </video>
+</p>
 
 ## Why I Built This
 
@@ -52,16 +58,6 @@ That's why this demo isn't just a random wheel. Random works for "what should I 
 The current design offers several entry points: if you want serious analysis, use Rational mode for benefits, risks, reversibility, and value alignment; if you're stuck on something small, Random gives you a nudge; if you need a different angle, Nature or Fengshui offer perspective (for reference and entertainment only); if you can't even articulate why you're stuck, Dialogue mode guides you through step-by-step questions.
 
 The boundary I care about most: it can only assist your choice; it cannot bear the choice for you. Especially with life decisions, what really matters isn't whether the answer "looks right," but whether you've thought through why you're choosing it. If it can move someone from "I don't know what to do" to "I know what first step I can take," it has done its job.
-
-<p align="center">
-  👉 <a href="https://mianbaofang.github.io/decision-brief/index-en.html"><strong>Watch the Interactive Intro Animation</strong></a> 👈
-</p>
-
-<p align="center">
-  <video src="docs/demo.mp4" alt="Decision Brief demo" width="920" autoplay loop muted playsinline>
-    <img src="docs/images/home-en.png" width="920" alt="Decision Brief demo">
-  </video>
-</p>
 
 ## Quick Start
 

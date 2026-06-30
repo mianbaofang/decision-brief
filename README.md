@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="README.en.md">English</a>
+  <a href="README.en.md">English</a> · <a href="https://mianbaofang.github.io/decision-brief/">中文介绍动画</a> · <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
 </p>
 
 ---
@@ -24,6 +24,12 @@
 **别纠结**是一个本地优先的决策辅助工具。它不替你做决定——它帮你把一团乱麻的纠结，拆成能判断的证据、看得见的风险、走得动的下一步。
 
 输入一句话（也可以配图片、直接说语音），选择六种视角之一（或交给"自动"判断），几秒钟拿到一份结构化的决策简报。所有决策自动归档，可标记执行结果、回看后悔率、复盘决策模式。
+
+<p align="center">
+  <video src="docs/demo.mp4" alt="别纠结功能介绍动画" width="920" autoplay loop muted playsinline controls>
+    <img src="docs/images/home-zh.png" width="920" alt="别纠结功能介绍">
+  </video>
+</p>
 
 ## 为什么做这个工具
 
@@ -52,16 +58,6 @@
 现在的设计里，有几种不同的入口：想认真分析就用理性分析看收益、风险、可逆性和价值匹配；只是小事卡住了可以用随机决策给自己一个推动；想换个角度可以看看自然启示或风水参考（仅作参考和娱乐）；如果连自己为什么纠结都说不清，就用对话引导让系统一步步追问。
 
 我最在意的边界是：它只能辅助选择，不能替人承担选择。尤其是很多生活里的决定，真正重要的不是"答案看起来对不对"，而是用户有没有想明白自己为什么这样选。如果能让一个人从"我不知道怎么办"变成"我知道可以先做哪一步"，它就有价值了。
-
-<p align="center">
-  👉 <a href="https://mianbaofang.github.io/decision-brief/"><strong>观看交互式介绍动画</strong></a> 👈
-</p>
-
-<p align="center">
-  <video src="docs/demo.mp4" alt="别纠结功能介绍动画" width="920" autoplay loop muted playsinline>
-    <img src="docs/images/home-zh.png" width="920" alt="别纠结功能介绍">
-  </video>
-</p>
 
 ## 快速开始
 
@@ -208,7 +204,7 @@ choice-skill/
 │   └── styles/           # main / chat / archive / stats / settings / desktop
 ├── scripts/              # CLI 入口
 ├── tests/                # pytest + Playwright 测试集
-├── docs/                 # GitHub Pages 介绍页、截图、动画 GIF
+├── docs/                 # GitHub Pages 介绍页、截图、演示视频
 ├── SKILL.md              # Skill 说明与调用样例
 └── README.md             # 本文件
 ```
