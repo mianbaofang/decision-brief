@@ -26,7 +26,7 @@
 Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose), and get a structured decision brief in seconds. Every decision is auto-archived. Mark it executed or regretted later. Review your patterns over time.
 
 <p align="center">
-  <video src="docs/demo.mp4" alt="Decision Brief demo" width="920" autoplay loop muted playsinline controls>
+  <video src="docs/demo.mp4" alt="Decision Brief demo" width="920" autoplay loop muted playsinline>
     <img src="docs/images/home-en.png" width="920" alt="Decision Brief demo">
   </video>
 </p>
