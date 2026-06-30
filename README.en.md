@@ -1,12 +1,6 @@
 # Decision Brief · 别纠结
 
 <p align="center">
-  <video src="docs/demo.mp4" alt="Decision Brief demo" width="920" autoplay loop muted playsinline>
-    <img src="docs/images/home-en.png" width="920" alt="Decision Brief demo">
-  </video>
-</p>
-
-<p align="center">
   <strong>Compress your dilemma into one sentence.</strong><br>
   Text, voice, or photo — you name the choice. We turn anxiety into evidence, risks, and a next step you can act on.
 </p>
@@ -20,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="README.md">中文</a> · <a href="https://choice.example.com">Live Demo</a> · <a href="docs/index-en.html">Intro Page</a>
+  <a href="README.md">中文</a>
 </p>
 
 ---
@@ -30,6 +24,40 @@
 **Decision Brief (别纠结)** is a local-first decision-making assistant. It does not decide for you — it untangles your overthinking into verifiable evidence, visible risks, and a concrete first move.
 
 Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose), and get a structured decision brief in seconds. Every decision is auto-archived. Mark it executed or regretted later. Review your patterns over time.
+
+## Why I Built This
+
+The idea for Decision Brief came from tidying up a room with my daughter.
+
+She's in sixth grade. That day we were sorting through her room together — desks, cabinets, drawers full of stuff: old notebooks, little toys, stickers, craft projects, half-used stationery, and a few things she herself couldn't decide whether to keep or not.
+
+The hard part wasn't the cleaning. It was that every step required a choice.
+
+Should this stay? Is that still usable? Does this have sentimental value? Do I do the desk first or the drawers? What if I throw it away and miss it later?
+
+What looks simple to an adult isn't simple to a child. Many things have some reason to keep, and some reason to let go. She wasn't unwilling to clean — she just needed a moment to think about each small decision. Think too much, and you get tired. The room stays messy.
+
+That moment made me realize: adults are the same. Our "rooms" are just work, life, relationships, and plans.
+
+Many choices aren't without answers — they're just tangled together. Emotion, risk, habit, attachment, fear of regret, all squeezed into one question. Someone telling you "just pick this" doesn't necessarily help, because the person who has to live with the result is still you.
+
+So I wanted to build a tool that helps lay choices out first.
+
+It doesn't decide for you — "keep or toss," "do it or don't." It's more like someone sitting beside you asking a few questions: Why do you want to keep it? What happens if you don't? How big is the cost really? Is there a tiny first step you could try?
+
+That's the original intention behind Decision Brief. I want it to solve a very specific scenario: when you're stuck on a pile of small judgments, you have a lightweight tool that helps you articulate the problem, separate the reasons, and make the next step feel less heavy.
+
+That's why this demo isn't just a random wheel. Random works for "what should I eat for dinner" — low-stakes calls — but not for every choice. And I didn't make it into a complicated productivity system either, because when you're stuck in overthinking, you usually don't have the patience to fill out forms. One sentence should be enough to start.
+
+The current design offers several entry points: if you want serious analysis, use Rational mode for benefits, risks, reversibility, and value alignment; if you're stuck on something small, Random gives you a nudge; if you need a different angle, Nature or Fengshui offer perspective (for reference and entertainment only); if you can't even articulate why you're stuck, Dialogue mode guides you through step-by-step questions.
+
+The boundary I care about most: it can only assist your choice; it cannot bear the choice for you. Especially with life decisions, what really matters isn't whether the answer "looks right," but whether you've thought through why you're choosing it. If it can move someone from "I don't know what to do" to "I know what first step I can take," it has done its job.
+
+<p align="center">
+  <video src="docs/demo.mp4" alt="Decision Brief demo" width="920" autoplay loop muted playsinline>
+    <img src="docs/images/home-en.png" width="920" alt="Decision Brief demo">
+  </video>
+</p>
 
 ## Quick Start
 
