@@ -1,0 +1,45 @@
+[project]
+name = "choice-skill"
+version = "0.8.4"
+description = "别纠结决策辅助 - 开源 Skill"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "Choice Skill Contributors" }]
+readme = "README.md"
+keywords = ["decision", "fastapi", "skill", "ai"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Framework :: FastAPI",
+]
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "httpx",
+    "pydantic>=2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio", "httpx"]
+
+[project.scripts]
+choice-assistant = "scripts.choice_assistant:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v"
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["backend", "backend.models", "backend.routes", "backend.services", "scripts"]

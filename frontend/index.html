@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4f5ef">
+<meta name="color-scheme" content="light dark">
+<title>别纠结 · Decision Skill</title>
+<link rel="stylesheet" href="styles/main.css?v=6">
+<link rel="stylesheet" href="styles/chat.css?v=7">
+<link rel="stylesheet" href="styles/archive.css?v=6">
+<link rel="stylesheet" href="styles/stats.css?v=6">
+<link rel="stylesheet" href="styles/settings.css?v=6">
+<link rel="stylesheet" href="styles/desktop.css?v=7">
+</head>
+<body>
+<div class="app-shell">
+  <!-- 顶栏 -->
+  <header class="topbar">
+    <button type="button" class="menu-toggle" id="menuToggle" aria-label="菜单">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="crumb" id="crumb">决策 / 自动</div>
+    <div class="spacer"></div>
+    <button type="button" class="new-chat-btn" id="newChatBtn" aria-label="新对话">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      <span data-i18n="topbar.newChat">新对话</span>
+    </button>
+  </header>
+
+  <!-- 侧栏 -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="主导航">
+    <div class="sidebar-head">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-seal" aria-hidden="true">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M5,7 C14,2 8,14 18,22 C14,28 18,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M10,5 C2,12 20,16 10,24 C6,30 14,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M16,6 C8,10 28,18 12,26 C10,30 16,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            <path d="M24,6 C32,10 12,18 28,26 C30,30 24,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            <path d="M30,5 C38,12 20,16 30,24 C34,30 26,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M35,7 C26,2 32,14 22,22 C26,28 22,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M20,5 C20,14 20,24 20,35" stroke="rgba(244,245,239,0.95)" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <circle cx="20" cy="35" r="1.5" fill="rgba(244,245,239,0.95)"/>
+          </svg>
+        </div>
+        <span data-i18n="app.title">别纠结</span>
+      </div>
+      <div class="sidebar-sub" data-i18n="app.subtitle">让选择不再内耗</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button type="button" class="nav-item active" data-tab="chat">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10"/></svg></span>
+        <span data-i18n="nav.chat">决策</span>
+      </button>
+      <button type="button" class="nav-item" data-tab="archive">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+        <span data-i18n="nav.archive">档案</span>
+      </button>
+      <button type="button" class="nav-item" data-tab="stats">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5"/><path d="M8 19v-6"/><path d="M13 19V9"/><path d="M18 19V7"/></svg></span>
+        <span data-i18n="nav.stats">统计</span>
+      </button>
+      <button type="button" class="nav-item" data-tab="settings">
+        <span class="nav-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2 3.4-.2-.1a1.7 1.7 0 0 0-1.9.3 1.7 1.7 0 0 0-.8 1.6V22H9v-.2a1.7 1.7 0 0 0-.8-1.6 1.7 1.7 0 0 0-1.9-.3l-.2.1-2-3.4.1-.1A1.7 1.7 0 0 0 4.6 15 1.7 1.7 0 0 0 3 14H3v-4h.1a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1 2-3.4.2.1a1.7 1.7 0 0 0 1.9-.3A1.7 1.7 0 0 0 9 1.8V2h6v-.2a1.7 1.7 0 0 0 .8 1.6 1.7 1.7 0 0 0 1.9.3l.2-.1 2 3.4-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.1v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg></span>
+        <span data-i18n="nav.settings">设置</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-title" data-i18n="sidebar.recent">最近决策</div>
+    <div class="sidebar-recent" id="sidebarRecent">
+      <!-- 由 JS 动态填充 -->
+    </div>
+
+    <div class="sidebar-foot">
+      <span id="sideLang">简体中文</span>
+      <span id="sideVersion">v0.8.4</span>
+    </div>
+  </aside>
+
+  <!-- 主区 -->
+  <main class="main">
+    <div class="scroll-area" id="chatScroll">
+      <section class="hero">
+        <div class="hero-label">
+          <span>DECISION BRIEF</span>
+        </div>
+        <h1 class="hero-title" data-i18n="hero.title">先把问题压成一句话。</h1>
+        <p class="hero-sub" data-i18n="hero.copy">你说选择，我负责把焦虑拆成可判断的证据、风险和下一步动作。</p>
+      </section>
+
+      <section class="mode-grid" id="modeSelector" role="radiogroup" aria-label="决策模式选择">
+        <button type="button" class="mode-card active" data-mode="auto" role="radio" aria-checked="true" data-i18n-title="mode.auto.desc">
+          <svg class="mode-seal" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="#317d78"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/><text x="12" y="16.5" font-family="'Songti SC','Noto Serif SC',serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">自</text></svg>
+          <span data-i18n="mode.auto">自动</span>
+        </button>
+        <button type="button" class="mode-card" data-mode="rational" role="radio" aria-checked="false" data-i18n-title="mode.rational.desc">
+          <svg class="mode-seal" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="#365385"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/><text x="12" y="16.5" font-family="'Songti SC','Noto Serif SC',serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">理</text></svg>
+          <span data-i18n="mode.rational">理性</span>
+        </button>
+        <button type="button" class="mode-card" data-mode="random" role="radio" aria-checked="false" data-i18n-title="mode.random.desc">
+          <svg class="mode-seal" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="#9b7636"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/><text x="12" y="16.5" font-family="'Songti SC','Noto Serif SC',serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">随</text></svg>
+          <span data-i18n="mode.random">天意</span>
+        </button>
+        <button type="button" class="mode-card" data-mode="nature" role="radio" aria-checked="false" data-i18n-title="mode.nature.desc">
+          <svg class="mode-seal" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="#486a55"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/><text x="12" y="16.5" font-family="'Songti SC','Noto Serif SC',serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">然</text></svg>
+          <span data-i18n="mode.nature">自然</span>
+        </button>
+        <button type="button" class="mode-card" data-mode="dialogue" role="radio" aria-checked="false" data-i18n-title="mode.dialogue.desc">
+          <svg class="mode-seal" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="#69526f"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/><text x="12" y="16.5" font-family="'Songti SC','Noto Serif SC',serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">问</text></svg>
+          <span data-i18n="mode.dialogue">对话</span>
+        </button>
+        <button type="button" class="mode-card" data-mode="fengshui" role="radio" aria-checked="false" data-i18n-title="mode.fengshui.desc">
+          <svg class="mode-seal" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="#b45a42"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/><text x="12" y="16.5" font-family="'Songti SC','Noto Serif SC',serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">局</text></svg>
+          <span data-i18n="mode.fengshui">风水</span>
+        </button>
+      </section>
+
+      <div class="chat-flow" id="chatContainer">
+        <!-- 对话内容由 chat.js 渲染 -->
+      </div>
+    </div>
+
+    <div class="quick-row" id="quickExamples">
+      <button type="button" class="quick-chip" data-i18n="quick.1">中午吃什么？</button>
+      <button type="button" class="quick-chip" data-i18n="quick.2">该不该辞职？</button>
+      <button type="button" class="quick-chip" data-i18n="quick.3">要不要分手？</button>
+      <button type="button" class="quick-chip" data-i18n="quick.4">这本书留还是扔？</button>
+      <button type="button" class="quick-chip" data-i18n="quick.5">买房还是租房？</button>
+    </div>
+
+    <div class="composer">
+      <label for="inputText" class="sr-only" data-i18n="chat.placeholder">决策问题输入框</label>
+      <div class="composer-preview" id="imagePreview" hidden>
+        <div class="image-thumb">
+          <img id="imagePreviewImg" alt="preview">
+          <button type="button" class="image-remove" id="imageRemove" aria-label="移除图片">×</button>
+        </div>
+      </div>
+      <textarea id="inputText" rows="1" maxlength="2000" data-i18n-ph="chat.placeholder" aria-label="决策问题输入框" autocomplete="off" spellcheck="false"></textarea>
+      <div class="composer-toolbar">
+        <div class="composer-tools-left">
+          <button type="button" class="tool-button" id="imageBtn" aria-label="上传图片">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </button>
+          <input type="file" id="imageInput" accept="image/*" hidden>
+        </div>
+        <div class="composer-tools-right">
+          <button type="button" class="tool-button mic-button" id="micBtn" aria-label="语音输入" data-i18n-aria="chat.mic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </button>
+          <button type="button" class="send-button" id="sendBtn" aria-label="发送">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- 右侧抽屉 -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-label="抽屉">
+  <div class="drawer-header">
+    <button type="button" class="drawer-back" id="drawerBack" aria-label="关闭抽屉">
+      <svg width="14" height="14" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M10 2L2 10l8 8"/></svg>
+      <span data-i18n="drawer.back">返回</span>
+    </button>
+    <div class="drawer-title" id="drawerTitle">档案</div>
+  </div>
+  <div class="drawer-body" id="drawerBody">
+    <!-- 档案视图（保留旧 ID 供 archive.js 使用） -->
+    <div class="page" id="page-archive">
+      <div class="archive-list" id="archiveList"></div>
+      <div class="detail-view" id="detailView" aria-hidden="true">
+        <div class="detail-header">
+          <button type="button" class="detail-back" id="detailBack" aria-label="返回档案列表">
+            <svg viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M10 2L2 10l8 8"/></svg>
+            <span data-i18n="archive.back">返回</span>
+          </button>
+          <div class="detail-title" data-i18n="archive.detail">详情</div>
+        </div>
+        <div class="detail-body" id="detailBody"></div>
+      </div>
+    </div>
+
+    <!-- 统计视图（保留旧 ID 供 stats.js 使用） -->
+    <div class="page" id="page-stats">
+      <div class="stats-scroll" id="statsScroll"></div>
+    </div>
+
+    <!-- 设置视图（保留旧 ID 供 settings.js 使用） -->
+    <div class="page" id="page-settings">
+      <div class="settings-scroll" id="settingsScroll">
+        <div class="user-card">
+          <div class="user-avatar">游</div>
+          <div class="user-info">
+            <div class="ui-name" data-i18n="app.title">别纠结</div>
+            <div class="ui-sub" data-i18n="app.subtitle">让选择不再内耗</div>
+          </div>
+        </div>
+
+        <div class="settings-group-title" data-i18n="settings.preferences">用户偏好</div>
+        <div class="settings-list">
+          <button type="button" class="setting-row" id="setLanguage">
+            <span class="row-icon ic-lang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
+            <div class="setting-copy"><b data-i18n="settings.language">界面语言</b><span id="languageValue">简体中文</span></div>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button type="button" class="setting-row" id="setTheme">
+            <span class="row-icon ic-theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></span>
+            <div class="setting-copy"><b data-i18n="settings.theme">主题模式</b><span id="themeValue">跟随系统</span></div>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button type="button" class="setting-row" id="setDefaultMode">
+            <span class="row-icon ic-mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+            <div class="setting-copy"><b data-i18n="settings.defaultMode">默认决策模式</b><span id="defaultModeValue">自动</span></div>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button type="button" class="setting-row" id="setValues">
+            <span class="row-icon ic-values"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
+            <div class="setting-copy"><b data-i18n="settings.values">价值观权重</b><span id="valuesValue">默认</span></div>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <div class="settings-group-title" data-i18n="settings.llm">AI 配置</div>
+        <div class="settings-list">
+          <button type="button" class="setting-row" id="setAIConfig">
+            <span class="row-icon ic-llm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M9 2h6M8 12h.01M16 12h.01M8 16h8"/></svg></span>
+            <div class="setting-copy"><b data-i18n="settings.llm">AI 配置</b><span id="aiConfigValue" data-i18n="settings.llm.apiKey">API Key</span></div>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button type="button" class="setting-row" id="setWeatherConfig">
+            <span class="row-icon ic-weather"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 18a4 4 0 0 0 0-8 6 6 0 0 0-11.5 2A4 4 0 0 0 6 18z"/></svg></span>
+            <div class="setting-copy"><b data-i18n="settings.weather">自然天气配置</b><span id="weatherConfigValue" data-i18n="settings.weather.simulated">模拟数据</span></div>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <div class="settings-group-title" data-i18n="settings.tts">语音朗读</div>
+        <div class="settings-list">
+          <button type="button" class="setting-row" id="setTTS">
+            <span class="row-icon ic-tts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></span>
+            <div class="setting-copy"><b data-i18n="settings.tts">语音朗读</b><span id="ttsValue">晓晓</span></div>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+
+        <div class="settings-group-title">关于</div>
+        <div class="settings-list">
+          <button type="button" class="setting-row" id="setAbout">
+            <div class="setting-copy"><b data-i18n="settings.about">关于别纠结</b></div>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <div class="setting-row">
+            <div class="setting-copy"><b data-i18n="settings.version">版本</b><span>0.8.4 · Desktop</span></div>
+          </div>
+        </div>
+        <div class="setting-version">别纠结 · Desktop Edition</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- Modal / Toast -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="对话框" aria-hidden="true">
+  <div class="modal" id="modalContent" role="document"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+<script src="scripts/i18n.js?v=6"></script>
+<script src="scripts/api.js?v=6"></script>
+<script src="scripts/brief.js?v=6"></script>
+<script src="scripts/voice.js?v=6"></script>
+<script src="scripts/chat.js?v=6"></script>
+<script src="scripts/archive.js?v=6"></script>
+<script src="scripts/stats.js?v=6"></script>
+<script src="scripts/settings.js?v=6"></script>
+<script src="scripts/app.js?v=6"></script>
+</body>
+</html>

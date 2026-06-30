@@ -1,0 +1,88 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+choice.db
+*.db-wal
+*.db-shm
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+logs/
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+_ui_test_outputs/
+test-results/
+playwright-report/
+trace.zip
+
+# Config (用户本地配置，不入库)
+config.json
+!.choice/config.json.example
+
+# Frontend
+node_modules/
+
+# Local generated previews / review artifacts
+preview_*.png
+docs/review-slide-*.png
+docs/intro-preview.png
+docs/intro-*.gif
+docs/superpowers/
+
+# Dev helper scripts (underscore-prefixed)
+_*.py
+_*.png
+_diag.png
+_verify/
+_ui_test_outputs/
+_superpowers/
+_screenshots/
+.superpowers/
