@@ -215,6 +215,7 @@ choice-skill/
 
 ## 开源
 
+- **作者**：Ethan <ethan.zl@hotmail.com>
 - **License**：MIT，详见 [LICENSE](LICENSE)
 - **致谢**：
   - 八字排盘参考 [jinchenma94/bazi-skill](https://github.com/jinchenma94/bazi-skill)（MIT）
