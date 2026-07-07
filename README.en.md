@@ -31,23 +31,6 @@
   <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
 </p>
 
-**Decision Brief (别纠结)** is a local-first decision-making assistant. It does not decide for you; it untangles overthinking into verifiable evidence, visible risks, and a concrete first move.
-
-> Read [Disclaimer](DISCLAIMER.md) before use. This project is decision support only; it is not legal, medical, financial, psychological, or other professional advice.
-
-## At A Glance
-
-| Scenario | Output |
-|---|---|
-| One-sentence dilemma | Evidence, risks, trade-offs, and a next action |
-| Six lenses | Rational analysis, random choice, nature metaphor, feng shui reference, guided dialogue, and auto mode |
-| Multimodal input | Text, voice, and image input flow into the same decision brief |
-| Review loop | Local archive, execution status, regret tracking, and decision-pattern review |
-
-## In One Sentence
-
-Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose), and get a structured decision brief in seconds. Every decision is auto-archived. Mark it executed or regretted later. Review your patterns over time.
-
 ## Why I Built This
 
 The idea for Decision Brief came from tidying up a room with my daughter.
@@ -75,6 +58,23 @@ That's why this demo isn't just a random wheel. Random works for "what should I 
 The current design offers several entry points: if you want serious analysis, use Rational mode for benefits, risks, reversibility, and value alignment; if you're stuck on something small, Random gives you a nudge; if you need a different angle, Nature or Fengshui offer perspective (for reference and entertainment only); if you can't even articulate why you're stuck, Dialogue mode guides you through step-by-step questions.
 
 The boundary I care about most: it can only assist your choice; it cannot bear the choice for you. Especially with life decisions, what really matters isn't whether the answer "looks right," but whether you've thought through why you're choosing it. If it can move someone from "I don't know what to do" to "I know what first step I can take," it has done its job.
+
+**Decision Brief (别纠结)** is a local-first decision-making assistant. It does not decide for you; it untangles overthinking into verifiable evidence, visible risks, and a concrete first move.
+
+> Read [Disclaimer](DISCLAIMER.md) before use. This project is decision support only; it is not legal, medical, financial, psychological, or other professional advice.
+
+## At A Glance
+
+| Scenario | Output |
+|---|---|
+| One-sentence dilemma | Evidence, risks, trade-offs, and a next action |
+| Six lenses | Rational analysis, random choice, nature metaphor, feng shui reference, guided dialogue, and auto mode |
+| Multimodal input | Text, voice, and image input flow into the same decision brief |
+| Review loop | Local archive, execution status, regret tracking, and decision-pattern review |
+
+## In One Sentence
+
+Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose), and get a structured decision brief in seconds. Every decision is auto-archived. Mark it executed or regretted later. Review your patterns over time.
 
 ## Quick Start
 
