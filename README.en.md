@@ -30,6 +30,10 @@ Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose
 <p align="center">
   <a href="README.md">中文</a>
   ·
+  <a href="DISCLAIMER.md">Disclaimer</a>
+  ·
+  <a href="ACKNOWLEDGEMENTS.md">Acknowledgements</a>
+  ·
   <a href="https://mianbaofang.github.io/decision-brief/">Chinese Intro</a>
   ·
   <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
@@ -187,6 +191,8 @@ See [SKILL.md](SKILL.md) for the full parameter list.
 - Fengshui and Nature lenses are for perspective and entertainment; they should not be the sole basis for serious decisions.
 - `.env`, local databases, real API keys, and personal decision records should not be committed to GitHub.
 
+Read [DISCLAIMER.md](DISCLAIMER.md) for the full disclaimer.
+
 ## Tech Stack
 
 | Layer | Tech |
@@ -233,6 +239,8 @@ choice-skill/
   - TTS: Microsoft Edge TTS (built-in, free)
   - STT: browser Web Speech API (free)
   - Weather: Amap Open Platform (built-in key, works out of the box)
+
+See [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md) for the full attribution list.
 
 ## Status
 

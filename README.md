@@ -30,6 +30,10 @@
 <p align="center">
   <a href="README.en.md">English</a>
   ·
+  <a href="DISCLAIMER.md">免责声明</a>
+  ·
+  <a href="ACKNOWLEDGEMENTS.md">致谢</a>
+  ·
   <a href="https://mianbaofang.github.io/decision-brief/">中文介绍动画</a>
   ·
   <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
@@ -187,6 +191,8 @@ python scripts/choice_assistant.py --action decision --id <id> --delete
 - 风水参考和自然启示只作为视角切换与娱乐参考，不应作为严肃决策的唯一依据。
 - `.env`、本地数据库、真实 API Key 和个人决策记录不应提交到 GitHub。
 
+完整免责声明见 [DISCLAIMER.md](DISCLAIMER.md)。
+
 ## 技术栈
 
 | 层 | 技术 |
@@ -233,6 +239,8 @@ choice-skill/
   - TTS：Microsoft Edge TTS（内置、免费）
   - STT：浏览器原生 Web Speech API（免费）
   - 天气：高德开放平台（内置 Key，开箱即用）
+
+完整引用与感谢清单见 [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md)。
 
 ## 状态
 
