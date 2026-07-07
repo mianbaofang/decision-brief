@@ -13,14 +13,6 @@
   <img src="https://img.shields.io/badge/multimodal-vision-purple" alt="multimodal">
 </p>
 
----
-
-## In One Sentence
-
-**Decision Brief (别纠结)** is a local-first decision-making assistant. It does not decide for you — it untangles your overthinking into verifiable evidence, visible risks, and a concrete first move.
-
-Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose), and get a structured decision brief in seconds. Every decision is auto-archived. Mark it executed or regretted later. Review your patterns over time.
-
 <p align="center">
   <a href="https://mianbaofang.github.io/decision-brief/index-en.html">
     <img src="docs/images/intro-animation-preview-en.gif" alt="Decision Brief English intro animation preview" width="100%">
@@ -38,6 +30,23 @@ Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose
   ·
   <a href="https://mianbaofang.github.io/decision-brief/index-en.html">English Intro</a>
 </p>
+
+**Decision Brief (别纠结)** is a local-first decision-making assistant. It does not decide for you; it untangles overthinking into verifiable evidence, visible risks, and a concrete first move.
+
+> Read [Disclaimer](DISCLAIMER.md) before use. This project is decision support only; it is not legal, medical, financial, psychological, or other professional advice.
+
+## At A Glance
+
+| Scenario | Output |
+|---|---|
+| One-sentence dilemma | Evidence, risks, trade-offs, and a next action |
+| Six lenses | Rational analysis, random choice, nature metaphor, feng shui reference, guided dialogue, and auto mode |
+| Multimodal input | Text, voice, and image input flow into the same decision brief |
+| Review loop | Local archive, execution status, regret tracking, and decision-pattern review |
+
+## In One Sentence
+
+Type (or speak, or attach a photo), pick one of six lenses (or let "Auto" choose), and get a structured decision brief in seconds. Every decision is auto-archived. Mark it executed or regretted later. Review your patterns over time.
 
 ## Why I Built This
 
