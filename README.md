@@ -145,7 +145,7 @@ python main.py
 也支持环境变量（最高优先级）：
 
 ```bash
-export CHOICE_LLM_API_KEY=sk-xxx
+export CHOICE_LLM_API_KEY=YOUR_API_KEY
 export CHOICE_LLM_MODEL=gpt-4o-mini          # 图片输入请换视觉模型如 gpt-4o
 export CHOICE_LLM_BASE_URL=https://api.openai.com/v1
 export CHOICE_WEATHER_CITY=北京              # 天气城市，天气 Key 已内置无需再配
@@ -155,7 +155,7 @@ CLI 写入 SQLite：
 
 ```bash
 python scripts/choice_assistant.py --action config-api --save-to-db \
-  --api-key sk-xxx \
+  --api-key YOUR_API_KEY \
   --llm-model gpt-4o-mini \
   --llm-base-url https://api.openai.com/v1 \
   --weather-city 北京
@@ -178,6 +178,14 @@ python scripts/choice_assistant.py --action decision --id <id> --delete
 ```
 
 完整参数见 [SKILL.md](SKILL.md)。
+
+## 安全和边界
+
+- 本项目是决策辅助工具，不替用户承担法律、医疗、投资、升学、就业或家庭关系等高风险决定。
+- 默认本地优先：决策档案保存在本机 SQLite；用户自行决定是否配置第三方 LLM。
+- 图片输入会发送给用户配置的视觉模型；上传身份证件、病历、合同、孩子照片等敏感图片前请自行评估风险。
+- 风水参考和自然启示只作为视角切换与娱乐参考，不应作为严肃决策的唯一依据。
+- `.env`、本地数据库、真实 API Key 和个人决策记录不应提交到 GitHub。
 
 ## 技术栈
 
@@ -213,18 +221,22 @@ choice-skill/
 └── README.md             # 本文件
 ```
 
-## 开源
+## 开源与致谢
 
-- **作者**：Ethan <ethan.zl@hotmail.com>
 - **License**：MIT，详见 [LICENSE](LICENSE)
+- **开源依赖**：FastAPI、Uvicorn、HTTPX、Pydantic、SQLite、pytest、Playwright。
 - **致谢**：
-  - 八字排盘参考 [jinchenma94/bazi-skill](https://github.com/jinchenma94/bazi-skill)（MIT）
-  - 去 AI 腔表达参考 [op7418/humanizer-zh](https://github.com/op7418/humanizer-zh)
+  - 八字排盘参考 [jinchenma94/bazi-skill](https://github.com/jinchenma94/bazi-skill)（MIT）。
+  - 中文去 AI 腔表达参考 [op7418/humanizer-zh](https://github.com/op7418/humanizer-zh)。
 - **外部服务**：
   - LLM：任意 OpenAI 兼容接口（用户自配 Key；多模态图片需视觉模型）
   - TTS：Microsoft Edge TTS（内置、免费）
   - STT：浏览器原生 Web Speech API（免费）
   - 天气：高德开放平台（内置 Key，开箱即用）
+
+## 状态
+
+当前版本：`v0.8.4`。项目已包含 Web UI、CLI、本地归档、多语言、语音、图片输入和 mock 降级。公开使用前请先阅读上面的安全边界，并自行配置真实 LLM Key。
 
 ---
 

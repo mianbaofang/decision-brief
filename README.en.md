@@ -145,7 +145,7 @@ On first launch, open **Settings → AI Config** and paste any OpenAI-compatible
 Environment variables (highest priority):
 
 ```bash
-export CHOICE_LLM_API_KEY=sk-xxx
+export CHOICE_LLM_API_KEY=YOUR_API_KEY
 export CHOICE_LLM_MODEL=gpt-4o-mini          # swap to gpt-4o / qwen-vl for images
 export CHOICE_LLM_BASE_URL=https://api.openai.com/v1
 export CHOICE_WEATHER_CITY=Beijing           # weather key is bundled, city only
@@ -155,7 +155,7 @@ Save to SQLite via CLI:
 
 ```bash
 python scripts/choice_assistant.py --action config-api --save-to-db \
-  --api-key sk-xxx \
+  --api-key YOUR_API_KEY \
   --llm-model gpt-4o-mini \
   --llm-base-url https://api.openai.com/v1 \
   --weather-city Beijing
@@ -178,6 +178,14 @@ python scripts/choice_assistant.py --action decision --id <id> --delete
 ```
 
 See [SKILL.md](SKILL.md) for the full parameter list.
+
+## Safety And Boundaries
+
+- This is a decision-support tool. It does not take responsibility for legal, medical, financial, education, employment, or relationship decisions.
+- The app is local-first: decision archives are stored in local SQLite unless the user chooses to call a third-party LLM.
+- Image inputs are sent to the configured vision model. Think carefully before uploading IDs, medical records, contracts, child photos, or other sensitive images.
+- Fengshui and Nature lenses are for perspective and entertainment; they should not be the sole basis for serious decisions.
+- `.env`, local databases, real API keys, and personal decision records should not be committed to GitHub.
 
 ## Tech Stack
 
@@ -213,9 +221,10 @@ choice-skill/
 └── README.en.md          # This file
 ```
 
-## License & Credits
+## Open Source And Acknowledgements
 
 - **License**: MIT, see [LICENSE](LICENSE)
+- **Open-source dependencies**: FastAPI, Uvicorn, HTTPX, Pydantic, SQLite, pytest, and Playwright.
 - **Thanks to**:
   - BaZi engine inspired by [jinchenma94/bazi-skill](https://github.com/jinchenma94/bazi-skill) (MIT)
   - De-AI-ification style inspired by [op7418/humanizer-zh](https://github.com/op7418/humanizer-zh)
@@ -224,6 +233,10 @@ choice-skill/
   - TTS: Microsoft Edge TTS (built-in, free)
   - STT: browser Web Speech API (free)
   - Weather: Amap Open Platform (built-in key, works out of the box)
+
+## Status
+
+Current version: `v0.8.4`. The project includes the Web UI, CLI, local archive, i18n, voice, image input, and mock fallback. Read the safety boundaries above before using real personal decisions or third-party LLM keys.
 
 ---
 

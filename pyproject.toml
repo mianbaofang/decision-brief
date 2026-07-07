@@ -17,10 +17,12 @@ dependencies = [
     "uvicorn[standard]",
     "httpx",
     "pydantic>=2",
+    "python-multipart",
+    "edge-tts",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest", "pytest-asyncio", "httpx"]
+dev = ["pytest", "pytest-asyncio", "httpx", "playwright"]
 
 [project.scripts]
 choice-assistant = "scripts.choice_assistant:main"
