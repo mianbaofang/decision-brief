@@ -18,7 +18,7 @@ from typing import Any
 import httpx
 
 # 后端默认地址
-DEFAULT_BASE_URL = "http://localhost:8000"
+DEFAULT_BASE_URL = "http://127.0.0.1:8010"
 
 # 六种决策模式（与后端 modes_data 保持一致）
 MODES = ["auto", "rational", "random", "nature", "dialogue", "fengshui"]
@@ -34,6 +34,7 @@ REQ_FIELD_MAP = {
     "llm_model": "llmModel",
     "llm_base_url": "llmBaseUrl",
     "weather_key": "weatherKey",
+    "weather_base_url": "weatherBaseUrl",
     "weather_appsecret": "weatherAppsecret",  # 兼容旧版，后端读取时自动映射到 weather_key
     "weather_city": "weatherCity",
 }
@@ -83,6 +84,7 @@ def _collect_cli_config(args: argparse.Namespace) -> dict:
         "llm_model": getattr(args, "llm_model", None),
         "llm_base_url": getattr(args, "llm_base_url", None),
         "weather_key": weather_key,
+        "weather_base_url": getattr(args, "weather_base_url", None),
         "weather_appsecret": getattr(args, "weather_appsecret", None),
         "weather_city": getattr(args, "weather_city", None),
     }
@@ -215,6 +217,7 @@ def cmd_config(args: argparse.Namespace) -> int:
             ("llm_model", "CHOICE_LLM_MODEL"),
             ("llm_base_url", "CHOICE_LLM_BASE_URL"),
             ("weather_key", "CHOICE_WEATHER_KEY"),
+            ("weather_base_url", "CHOICE_WEATHER_BASE_URL"),
             ("weather_appsecret", "CHOICE_WEATHER_APPSECRET"),  # 兼容旧版
             ("weather_city", "CHOICE_WEATHER_CITY"),
         ):
@@ -260,6 +263,10 @@ def _add_config_flags(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--weather-key", default=None,
         help="高德开放平台 Key（10 万次/日免费，申请：https://lbs.amap.com/dev/key/app）",
+    )
+    parser.add_argument(
+        "--weather-base-url", default=None,
+        help="高德天气接口地址，如 https://restapi.amap.com/v3/weather/weatherInfo",
     )
     parser.add_argument(
         "--weather-appsecret", default=None,

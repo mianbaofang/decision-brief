@@ -199,6 +199,24 @@ def test_nature_signal_build_degraded_weather():
     assert result["weights"][0] == {"name": "降级天气", "weight": 16, "value": "模拟阴天"}
 
 
+def test_nature_signal_uses_extended_reference_values():
+    result = build_nature_signal({
+        "isReal": True,
+        "weather": "雷阵雨",
+        "alarms": [{"title": "雷电黄色预警"}],
+        "forecast_24h": [{"time": "明天", "weather": "多云", "temperature": 29}],
+        "life_indices": [{"name": "出行", "text": "带伞"}],
+        "moonPhase": "下弦月",
+        "time": "夜晚",
+        "season": "夏",
+    })
+    names = [item["name"] for item in result["weights"]]
+    assert "天气预警" in names
+    assert "天气趋势" in names
+    assert "生活建议" in names
+    assert "月相" in names
+
+
 # ─── llm_service ────────────────────────────────────────────
 
 
@@ -208,7 +226,7 @@ def test_llm_service_call_llm_returns_mock_when_no_config(monkeypatch):
     for env in ("CHOICE_LLM_API_KEY", "CHOICE_LLM_BASE_URL", "CHOICE_LLM_MODEL"):
         monkeypatch.delenv(env, raising=False)
 
-    result = call_llm("要不要换工作", "rational", config={})
+    result = call_llm("要不要换工作", "rational", config={}, allow_mock=True)
     assert result["_source"] == "mock"
     assert result["type"] == "rational"
     # rational mock 必含 pros/cons/conclusion
@@ -222,7 +240,7 @@ def test_llm_service_call_llm_random_returns_six_options(monkeypatch):
     for env in ("CHOICE_LLM_API_KEY", "CHOICE_LLM_BASE_URL", "CHOICE_LLM_MODEL"):
         monkeypatch.delenv(env, raising=False)
 
-    result = call_llm("今天午餐吃什么", "random", config={})
+    result = call_llm("今天午餐吃什么", "random", config={}, allow_mock=True)
     assert result["_source"] == "mock"
     assert result["type"] == "random"
     assert len(result["options"]) == 6
@@ -233,7 +251,7 @@ def test_llm_service_call_llm_fengshui_returns_need_birth(monkeypatch):
     for env in ("CHOICE_LLM_API_KEY", "CHOICE_LLM_BASE_URL", "CHOICE_LLM_MODEL"):
         monkeypatch.delenv(env, raising=False)
 
-    result = call_llm("今年运势", "fengshui", config={})
+    result = call_llm("今年运势", "fengshui", config={}, allow_mock=True)
     assert result["_source"] == "mock"
     assert result["type"] == "fengshui"
     assert result["needBirth"] is True

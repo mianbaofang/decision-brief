@@ -102,10 +102,16 @@ const Chat = (() => {
       ta.value = lastQuestion + ' ' + e.detail;
       send();
     });
-    window.addEventListener('bjj:dialogue-complete', () => {
-      // 对话完成后保存当前决策
-      if (App.currentDecision) {
-        API.updateDecision(App.currentDecision.id, { dialogueDone: true }).catch(() => {});
+    window.addEventListener('bjj:dialogue-complete', async (e) => {
+      const current = App.currentDecision;
+      if (!current || !e.detail || !e.detail.answer) return;
+      const history = Array.isArray(current.dialogueHistory) ? current.dialogueHistory.slice() : [];
+      history.push({ question: e.detail.question || lastQuestion, answer: e.detail.answer });
+      try {
+        const updated = await API.updateDecision(current.id, { dialogueHistory: history });
+        App.currentDecision = { ...current, ...updated };
+      } catch (_) {
+        App.toast(I18N.t('common.error'));
       }
     });
   }

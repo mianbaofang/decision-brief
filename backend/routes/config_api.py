@@ -25,7 +25,7 @@ router = APIRouter()
 def _to_config_response(masked: Dict[str, Any]) -> Dict[str, Any]:
     """把 get_masked_config() 的扁平结构转为 ConfigResponse 形状。"""
     has_key = bool(masked.get("llm_api_key"))
-    # 高德只需一个 weather_key（兼容旧 weather_appsecret）
+    # Key 和 Base URL 都由用户配置；weather_appsecret 只作旧字段兼容。
     has_weather_key = bool(masked.get("weather_key") or masked.get("weather_appsecret"))
     return {
         "llm": {
@@ -35,7 +35,9 @@ def _to_config_response(masked: Dict[str, Any]) -> Dict[str, Any]:
         },
         "weather": {
             "city": masked.get("weather_city", ""),
+            "baseUrl": masked.get("weather_base_url", ""),
             "hasKey": has_weather_key,
+            "hasBaseUrl": bool(masked.get("weather_base_url")),
             # 兼容字段（旧前端可能仍读 hasAppsecret）
             "hasAppsecret": has_weather_key,
         },

@@ -97,6 +97,7 @@ class ChatRequest(BaseModel):
 
     天气服务从 v0.7.0 起切换到高德开放平台：
       - weatherKey（高德 Key）是主字段
+      - weatherBaseUrl 是高德天气接口地址
       - weatherAppsecret 兼容旧版（自动当作 weatherKey 处理）
     """
 
@@ -109,6 +110,7 @@ class ChatRequest(BaseModel):
     llmModel: Optional[str] = Field(default=None)
     llmBaseUrl: Optional[str] = Field(default=None)
     weatherKey: Optional[str] = Field(default=None, description="高德 Key（v0.7.0 主字段）")
+    weatherBaseUrl: Optional[str] = Field(default=None, description="高德天气接口 Base URL")
     weatherAppsecret: Optional[str] = Field(default=None, description="兼容旧版，自动映射到 weatherKey")
     weatherCity: Optional[str] = Field(default=None)
     # 用户价值观（rational 模式用）
@@ -197,6 +199,7 @@ class ConfigUpdate(BaseModel):
 
     天气服务从 v0.7.0 起切换到高德开放平台：
       - weather_key（高德 Key）是主字段
+      - weather_base_url 是高德天气接口地址
       - weather_appsecret 兼容旧版（自动当作 weather_key 处理）
     """
 
@@ -204,6 +207,7 @@ class ConfigUpdate(BaseModel):
     llm_model: Optional[str] = None
     llm_base_url: Optional[str] = None
     weather_key: Optional[str] = None
+    weather_base_url: Optional[str] = None
     weather_appsecret: Optional[str] = None  # 兼容旧版
     weather_city: Optional[str] = None
 
@@ -214,9 +218,11 @@ class PreferencesUpdate(BaseModel):
     language: Optional[str] = None
     default_mode: Optional[str] = None
     theme: Optional[str] = None
+    skin: Optional[str] = None
     logo: Optional[str] = None
     auto_speak: Optional[bool] = None
     tts_rate: Optional[float] = None
     tts_pitch: Optional[float] = None
     tts_voice_uri: Optional[str] = None
     values: Optional[Dict[str, int]] = None
+    demo_mode: Optional[bool] = None

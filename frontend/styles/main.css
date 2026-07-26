@@ -49,7 +49,7 @@ button {
 
   /* 模式别名映射 */
   --rational: var(--lapis);
-  --random: var(--brass);
+  --random: var(--random-head);
   --nature: var(--moss);
   --dialogue: var(--plum);
   --auto: var(--aqua);

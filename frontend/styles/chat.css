@@ -243,7 +243,7 @@
   gap: 12px;
 }
 .brief-head[data-tone="rational"] { background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent 48%), var(--lapis); }
-.brief-head[data-tone="random"]   { background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent 48%), var(--brass); }
+.brief-head[data-tone="random"]   { background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent 48%), var(--random-head); }
 .brief-head[data-tone="nature"]   { background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent 48%), var(--moss); }
 .brief-head[data-tone="dialogue"] { background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent 48%), var(--plum); }
 .brief-head[data-tone="fengshui"] { background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent 48%), var(--cinnabar); }
@@ -326,6 +326,7 @@
   gap: 10px;
   margin-top: 10px;
 }
+.brief-columns.is-single { grid-template-columns: 1fr; }
 .mini-section h3 {
   color: var(--ink-faint);
   font-size: 9px;
@@ -404,52 +405,572 @@
   padding: 4px 0;
 }
 
-/* ============ 天意模式：转盘 ============ */
-.wheel {
-  margin: 12px auto 6px;
-  width: 200px;
-  height: 200px;
-  position: relative;
+/* ============ 随机模式：多种抽取形式 ============ */
+.random-draw {
+  width: min(100%, 470px);
+  margin: 14px auto 2px;
 }
-.wheel-svg {
+.random-draw-stage {
+  display: grid;
+  grid-template-columns: minmax(180px, 225px) minmax(130px, 1fr);
+  align-items: center;
+  gap: 18px;
+}
+.random-visual-wrap {
+  min-width: 0;
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+}
+.random-form-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* 指针抽签盘 */
+.random-draw-wash { fill: var(--random-wash); }
+.random-draw-track,
+.random-draw-sweep {
+  fill: none;
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+}
+.random-draw-track {
+  stroke: var(--random-line);
+  stroke-width: 1.4;
+}
+.random-draw-sweep {
+  stroke: var(--random-ink);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 42 486;
+  opacity: 0.32;
+}
+.random-form-svg.is-drawing .random-draw-sweep {
+  animation: random-draw-sweep 1.35s var(--ease-ios-decel) both;
+}
+.random-draw-tick {
+  stroke: var(--random-line);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.random-draw-node {
+  fill: var(--surface);
+  stroke: var(--random-line);
+  stroke-width: 1.2;
+}
+.random-draw-node.is-picked {
+  fill: var(--random-pop);
+  stroke: var(--random-pop);
+}
+.random-draw-number {
+  fill: var(--ink-soft);
+  font-family: var(--font-text);
+  font-size: 9px;
+  font-weight: 700;
+}
+.random-draw-number.is-picked { fill: var(--white); }
+.random-draw-needle {
+  transform: rotate(-24deg);
+  transform-box: view-box;
+  transform-origin: 100px 100px;
+  transition: transform 1.45s cubic-bezier(.18,.82,.18,1);
+}
+.random-form-svg.is-drawing .random-draw-needle {
+  transform: rotate(calc(1080deg + var(--draw-angle)));
+}
+.random-draw-needle-line {
+  stroke: var(--random-ink);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.random-draw-needle-tip { fill: var(--random-ink); }
+.random-draw-center {
+  fill: var(--surface);
+  stroke: var(--random-ink);
+  stroke-width: 2;
+}
+
+/* 签筒：晃两次，再弹出一根签 */
+.random-stick {
+  stroke: var(--random-bamboo);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+.random-stick.is-picked { stroke: var(--random-pop); }
+.random-stick-shadow {
+  fill: rgba(15, 34, 28, .16);
+  filter: blur(2px);
+}
+.random-stick-mark {
+  fill: var(--surface);
+  stroke: var(--random-pop);
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.random-stick-number {
+  fill: var(--random-pop);
+  font-family: var(--font-text);
+  font-size: 11px;
+  font-weight: 800;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.random-stick-cup {
+  fill: var(--random-vessel);
+  stroke: var(--random-alt);
+  stroke-width: 2;
+}
+.random-stick-rim-back {
+  fill: var(--random-head);
+  stroke: var(--random-gold);
+  stroke-width: 2;
+}
+.random-stick-rim-front {
+  fill: none;
+  stroke: var(--random-gold);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.random-stick-cup-band { fill: var(--random-gold); opacity: .94; }
+.random-stick-cup-seal {
+  fill: var(--random-pop);
+  stroke: rgba(255,255,255,.66);
+  stroke-width: 1.2;
+}
+.random-stick-cup-char {
+  fill: var(--white);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+}
+.random-form-svg.is-drawing .random-stick {
+  animation: random-stick-shake .46s ease-in-out 2;
+}
+.random-form-svg.is-drawing .random-stick.is-picked {
+  animation: random-stick-shake .46s ease-in-out 2,
+             random-stick-win 1.05s .92s cubic-bezier(.2,.82,.2,1) forwards;
+}
+.random-form-svg.is-drawing .random-stick-mark,
+.random-form-svg.is-drawing .random-stick-number {
+  animation: random-stick-mark-win 1.05s .92s cubic-bezier(.2,.82,.2,1) both;
+}
+
+/* 骰子：Zdog 伪 3D，结果面由脚本固定到 1-6 */
+.random-dice-canvas-stage {
+  position: relative;
+  width: min(100%, 220px);
+  aspect-ratio: 1;
+  isolation: isolate;
+}
+.random-dice-canvas {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  transition: transform 3.2s var(--ease-ios-decel);
+  display: block;
+  filter: drop-shadow(0 12px 12px rgba(15, 34, 28, .2));
+  transform-origin: center 78%;
 }
-.wheel-pointer {
+.random-dice-shadow {
   position: absolute;
-  top: -4px;
+  z-index: 0;
   left: 50%;
+  bottom: 25px;
+  width: 92px;
+  height: 17px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(15, 34, 28, .27), rgba(15, 34, 28, 0) 72%);
+  filter: blur(1.5px);
   transform: translateX(-50%);
-  width: 0; height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 12px solid var(--ink);
-  z-index: 2;
+  transform-origin: center;
 }
-.wheel-result {
-  text-align: center;
-  margin-top: 8px;
-  font-family: var(--font-display);
-  font-size: 16px;
+.random-dice-canvas-stage.is-drawing .random-dice-canvas {
+  animation: random-zdog-die-hop 1.5s cubic-bezier(.2,.78,.2,1) both;
+}
+.random-dice-canvas-stage.is-drawing .random-dice-shadow {
+  animation: random-zdog-die-shadow 1.5s ease-out both;
+}
+
+/* 洗牌翻签 */
+.random-card-form {
+  transform: translate(var(--card-x), var(--card-y)) rotate(var(--card-angle));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.random-card--1 { --random-card-color: var(--random-card-1); }
+.random-card--2 { --random-card-color: var(--random-card-2); }
+.random-card--3 { --random-card-color: var(--random-card-3); }
+.random-card--4 { --random-card-color: var(--random-card-4); }
+.random-card--5 { --random-card-color: var(--random-card-5); }
+.random-card--6 { --random-card-color: var(--random-card-6); }
+.random-card-back-face {
+  fill: var(--random-vessel);
+  stroke: rgba(255,255,255,.78);
+  stroke-width: 1.5;
+}
+.random-card-back-frame {
+  fill: none;
+  stroke: rgba(255,255,255,.48);
+  stroke-width: 1;
+}
+.random-card-back-weave {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+  opacity: .82;
+}
+.random-card-back-weave--a { stroke: var(--random-card-1); }
+.random-card-back-weave--b { stroke: var(--random-card-5); }
+.random-card-back-seal {
+  fill: var(--random-pop);
+  stroke: rgba(255,255,255,.78);
+  stroke-width: 1.2;
+}
+.random-card-front { opacity: 0; }
+.random-card-face {
+  fill: var(--random-card-color);
+  stroke: rgba(255,255,255,.72);
+  stroke-width: 1.5;
+}
+.random-card-pattern {
+  fill: none;
+  stroke: rgba(255,255,255,.42);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+.random-card-seal {
+  fill: rgba(255,255,255,.12);
+  stroke: rgba(255,255,255,.62);
+  stroke-width: 1;
+}
+.random-card-number {
+  fill: var(--white);
+  font-family: var(--font-text);
+  font-size: 18px;
+  font-weight: 800;
+}
+.random-form-svg.is-drawing .random-card-form:not(.is-picked) {
+  animation: random-card-mix .34s ease-in-out 4 alternate;
+}
+.random-form-svg.is-drawing .random-card-form.is-picked {
+  animation: random-card-reveal 1.65s cubic-bezier(.18,.82,.2,1) both;
+}
+.random-form-svg.is-drawing .random-card-form.is-picked .random-card-back {
+  animation: random-card-back-hide 1ms 1.08s forwards;
+}
+.random-form-svg.is-drawing .random-card-form.is-picked .random-card-front {
+  animation: random-card-front-show 1ms 1.08s forwards;
+}
+
+/* 纸条抽取 */
+.random-ticket-window {
+  fill: var(--surface);
+  stroke: var(--random-line);
+  stroke-width: 1.5;
+}
+.random-ticket-line {
+  stroke: var(--random-pop);
+  stroke-opacity: .58;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+.random-ticket--1 { --random-ticket-color: var(--random-card-1); }
+.random-ticket--2 { --random-ticket-color: var(--random-card-2); }
+.random-ticket--3 { --random-ticket-color: var(--random-card-3); }
+.random-ticket--4 { --random-ticket-color: var(--random-card-4); }
+.random-ticket--5 { --random-ticket-color: var(--random-card-5); }
+.random-ticket--6 { --random-ticket-color: var(--random-card-6); }
+.random-ticket {
+  fill: var(--random-paper);
+  stroke: var(--random-line);
+  stroke-width: 1;
+}
+.random-ticket-accent { fill: var(--random-ticket-color); }
+.random-ticket-row.is-picked .random-ticket {
+  fill: var(--random-wash);
+  stroke: var(--random-pop);
+}
+.random-ticket-row.is-picked .random-ticket-accent { fill: var(--random-pop); }
+.random-ticket-text {
+  fill: var(--ink);
+  font-family: var(--font-text);
+  font-size: 10px;
   font-weight: 700;
-  color: var(--brass);
+}
+.random-ticket-strip { transform: translateY(var(--ticket-stop)); }
+.random-form-svg.is-drawing .random-ticket-strip {
+  animation: random-ticket-roll 1.4s cubic-bezier(.14,.78,.18,1) both;
+}
+
+/* 墨迹择路 */
+.random-ink-branch {
+  fill: none;
+  stroke: var(--ink-faint);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.random-ink-branch.is-picked {
+  stroke: var(--ink);
+  stroke-width: 4;
+}
+.random-ink-center { fill: var(--ink); }
+.random-ink-end {
+  fill: var(--surface);
+  stroke: var(--ink-faint);
+  stroke-width: 1.4;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.random-ink-end.is-picked {
+  fill: var(--random-pop);
+  stroke: var(--random-pop);
+}
+.random-ink-number {
+  fill: var(--ink-soft);
+  font-family: var(--font-text);
+  font-size: 10px;
+  font-weight: 800;
+}
+.random-ink-number.is-picked { fill: var(--white); }
+.random-form-svg.is-drawing .random-ink-branch {
+  animation: random-ink-grow .9s ease-out forwards;
+}
+.random-form-svg.is-drawing .random-ink-branch.is-picked {
+  animation-duration: 1.12s;
+}
+.random-form-svg.is-drawing .random-ink-end.is-picked {
+  animation: random-ink-bloom .58s .78s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.random-draw-options {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.random-draw-option {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-height: 31px;
+  padding: 0 6px;
+  border-radius: 6px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: 11px;
+}
+.random-draw-option:last-child { border-bottom: 0; }
+.random-draw-option.is-picked {
+  color: var(--random-ink);
+  font-weight: 700;
+  background: var(--random-wash);
+  box-shadow: inset 3px 0 0 var(--random-ink);
+}
+.random-draw-option-no {
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-faint);
+}
+.random-draw-option.is-picked .random-draw-option-no { color: var(--random-ink); }
+.random-draw-option-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.random-draw-result {
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--random-line);
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--random-ink);
+}
+
+@keyframes random-draw-sweep {
+  from { transform: rotate(-60deg); opacity: .08; }
+  55% { opacity: .48; }
+  to { transform: rotate(660deg); opacity: .2; }
+}
+@keyframes random-stick-shake {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  35% { transform: translateY(-9px) rotate(-3deg); }
+  70% { transform: translateY(5px) rotate(3deg); }
+}
+@keyframes random-stick-win {
+  0% { transform: translateY(0); }
+  28% { transform: translateY(8px); }
+  100% { transform: translateY(-54px) rotate(-2deg); }
+}
+@keyframes random-stick-mark-win {
+  0% { opacity: 0; transform: translateY(0) scale(.7); }
+  28% { opacity: 1; transform: translateY(8px) scale(1); }
+  100% { opacity: 1; transform: translateY(-54px) scale(1); }
+}
+@keyframes random-zdog-die-hop {
+  0% { transform: translateY(-48px) scale(.82); }
+  22% { transform: translateY(5px) scale(1.03); }
+  43% { transform: translateY(-27px) scale(.92); }
+  64% { transform: translateY(3px) scale(1.015); }
+  79% { transform: translateY(-10px) scale(.98); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes random-zdog-die-shadow {
+  0% { transform: translateX(-50%) scaleX(.48); opacity: .08; }
+  22% { transform: translateX(-50%) scaleX(1.18); opacity: .34; }
+  43% { transform: translateX(-50%) scaleX(.64); opacity: .14; }
+  64% { transform: translateX(-50%) scaleX(1.08); opacity: .3; }
+  79% { transform: translateX(-50%) scaleX(.82); opacity: .2; }
+  100% { transform: translateX(-50%) scaleX(1); opacity: .26; }
+}
+@keyframes random-card-mix {
+  to { transform: translate(92px, 48px) rotate(0deg); }
+}
+@keyframes random-card-reveal {
+  0% { transform: translate(var(--card-x), var(--card-y)) rotate(var(--card-angle)); }
+  18% { transform: translate(92px, 49px) rotate(-7deg); }
+  35% { transform: translate(89px, 47px) rotate(6deg); }
+  52% { transform: translate(92px, 49px) rotate(0deg); }
+  65% { transform: translate(93px, 30px) rotate(0deg) scaleX(.04) scaleY(1.04); }
+  78% { transform: translate(93px, 20px) rotate(0deg) scaleX(1) scaleY(1.06); }
+  100% { transform: translate(93px, 10px) rotate(0deg) scale(1.18); }
+}
+@keyframes random-card-back-hide { to { opacity: 0; } }
+@keyframes random-card-front-show { to { opacity: 1; } }
+@keyframes random-ticket-roll {
+  0% { transform: translateY(-280px); }
+  72% { transform: translateY(calc(var(--ticket-stop) + 16px)); }
+  86% { transform: translateY(calc(var(--ticket-stop) - 8px)); }
+  100% { transform: translateY(var(--ticket-stop)); }
+}
+@keyframes random-ink-grow { to { stroke-dashoffset: 0; } }
+@keyframes random-ink-bloom {
+  0% { opacity: 0; transform: scale(.2); }
+  65% { opacity: 1; transform: scale(1.35); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 560px) {
+  .random-draw { width: 100%; }
+  .random-draw-stage { grid-template-columns: 1fr; gap: 8px; }
+  .random-visual-wrap { min-height: 195px; }
+  .random-form-svg { width: min(100%, 220px); margin: 0 auto; }
+  .random-draw-options { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .random-form-svg.is-drawing * {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+  }
+  .random-form-svg.is-drawing .random-draw-needle {
+    transform: rotate(var(--draw-angle));
+    transition: none;
+  }
+  .random-dice-canvas-stage.is-drawing .random-dice-canvas,
+  .random-dice-canvas-stage.is-drawing .random-dice-shadow {
+    animation: none;
+  }
 }
 
 /* ============ 自然模式：信号卡 ============ */
 .nature-card {
   margin-top: 10px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(72,106,85,0.08), rgba(72,106,85,0.02));
-  border: 1px solid rgba(72,106,85,0.18);
+  border-top: 1px solid var(--line);
+}
+.nature-section {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.nature-section h4 {
+  margin-bottom: 9px;
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-weight: 650;
+}
+.nature-data-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+.nature-data-item {
+  min-width: 0;
+  padding: 8px 9px;
+  border: 1px solid rgba(72,106,85,0.14);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--surface) 90%, var(--moss));
+}
+.nature-data-label,
+.nature-data-value {
+  display: block;
+}
+.nature-data-label {
+  margin-bottom: 3px;
+  color: var(--ink-faint);
+  font-size: 9px;
+}
+.nature-data-value {
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 11px;
+  line-height: 1.45;
+}
+.nature-considerations .nature-data-grid {
+  grid-template-columns: 1fr;
+}
+.nature-considerations .nature-data-item:first-child {
+  border-color: color-mix(in srgb, var(--cinnabar) 28%, transparent);
+}
+.nature-weight-row {
+  display: grid;
+  grid-template-columns: 68px minmax(80px, 1fr) 36px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.nature-weight-name,
+.nature-weight-value {
+  color: var(--ink-soft);
+  font-size: 10px;
+}
+.nature-weight-value { text-align: right; }
+.nature-weight-track {
+  height: 5px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: rgba(72,106,85,0.12);
+}
+.nature-weight-bar {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--moss);
+}
+.nature-forecast-item {
+  margin-top: 6px;
+  color: var(--ink-soft);
+  font-size: 10px;
+  line-height: 1.5;
 }
 .nature-poem {
   font-family: var(--font-display);
   font-size: 13px;
   color: var(--moss);
   line-height: 1.6;
-  margin-top: 6px;
+  padding: 12px 0 4px;
+}
+.nature-source {
+  padding-top: 7px;
+  color: var(--ink-faint);
+  font-size: 9px;
 }
 
 /* ============ 对话模式：选项 ============ */

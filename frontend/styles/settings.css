@@ -124,6 +124,7 @@
 .row-icon.ic-weather { background: var(--moss); }
 .row-icon.ic-lang    { background: var(--aqua); }
 .row-icon.ic-theme   { background: var(--brass); }
+.row-icon.ic-skin    { background: var(--plum); }
 .row-icon.ic-mode    { background: var(--plum); }
 .row-icon.ic-values  { background: var(--cinnabar); }
 
@@ -173,6 +174,51 @@
   color: var(--white);
   border-color: var(--ink);
 }
+
+.skin-pick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.skin-pick {
+  min-height: 112px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text-primary);
+  text-align: left;
+}
+.skin-pick:active { transform: scale(0.98); }
+.skin-pick.active { border-color: var(--aqua); box-shadow: 0 0 0 2px rgba(49,125,120,.12); }
+.skin-preview {
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  grid-template-rows: 12px 1fr;
+  gap: 4px;
+  height: 66px;
+  margin-bottom: 7px;
+  overflow: hidden;
+  border: 1px solid rgba(25,26,22,.12);
+  border-radius: 6px;
+  background: #f4f5ef;
+}
+.skin-preview i { display: block; }
+.skin-preview i:first-child { grid-row: 1 / -1; background: #eceae0; }
+.skin-preview i:nth-child(2) { background: #e4e1d4; }
+.skin-preview i:nth-child(3) { margin:4px 5px 5px; border-radius:3px; background:#fbfbf7; }
+.skin-preview[data-preview="workbench"] { background:#f2f6f4; }
+.skin-preview[data-preview="workbench"] i:first-child { background:#f7faf8; }
+.skin-preview[data-preview="workbench"] i:nth-child(2) { background:#e0efe8; }
+.skin-preview[data-preview="workbench"] i:nth-child(3) { background:#fff; }
+.skin-preview[data-preview="journal"] { background:#f8f6ef; border-color:#4b4c45; }
+.skin-preview[data-preview="journal"] i:first-child { background:#f8f6ef; border-right:1px solid #4b4c45; }
+.skin-preview[data-preview="journal"] i:nth-child(2) { background:#f8f6ef; border-bottom:1px solid #4b4c45; }
+.skin-preview[data-preview="journal"] i:nth-child(3) { border:1px solid #cfc9ba; border-radius:0; background:#fffdf7; }
+.skin-preview[data-preview="console"] { background:#edf2f0; }
+.skin-preview[data-preview="console"] i:first-child { background:#fff; }
+.skin-preview[data-preview="console"] i:nth-child(2) { background:#d8e7e4; }
+.skin-preview[data-preview="console"] i:nth-child(3) { border:1px solid #d3ded8; background:#fff; }
 
 /* 语言列表 */
 .lang-list {
@@ -492,4 +538,3 @@
 .weather-tip a:hover {
   text-decoration: underline;
 }
-

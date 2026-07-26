@@ -6,12 +6,13 @@
 <meta name="theme-color" content="#f4f5ef">
 <meta name="color-scheme" content="light dark">
 <title>别纠结 · Decision Skill</title>
-<link rel="stylesheet" href="styles/main.css?v=6">
-<link rel="stylesheet" href="styles/chat.css?v=7">
-<link rel="stylesheet" href="styles/archive.css?v=6">
-<link rel="stylesheet" href="styles/stats.css?v=6">
-<link rel="stylesheet" href="styles/settings.css?v=6">
-<link rel="stylesheet" href="styles/desktop.css?v=7">
+<link rel="stylesheet" href="styles/main.css?v=7">
+<link rel="stylesheet" href="styles/chat.css?v=17">
+<link rel="stylesheet" href="styles/archive.css?v=7">
+<link rel="stylesheet" href="styles/stats.css?v=7">
+<link rel="stylesheet" href="styles/settings.css?v=7">
+<link rel="stylesheet" href="styles/desktop.css?v=9">
+<link rel="stylesheet" href="styles/skins.css?v=7">
 </head>
 <body>
 <div class="app-shell">
@@ -33,16 +34,7 @@
     <div class="sidebar-head">
       <div class="sidebar-logo">
         <div class="sidebar-logo-seal" aria-hidden="true">
-          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M5,7 C14,2 8,14 18,22 C14,28 18,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M10,5 C2,12 20,16 10,24 C6,30 14,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M16,6 C8,10 28,18 12,26 C10,30 16,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <path d="M24,6 C32,10 12,18 28,26 C30,30 24,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            <path d="M30,5 C38,12 20,16 30,24 C34,30 26,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M35,7 C26,2 32,14 22,22 C26,28 22,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M20,5 C20,14 20,24 20,35" stroke="rgba(244,245,239,0.95)" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <circle cx="20" cy="35" r="1.5" fill="rgba(244,245,239,0.95)"/>
-          </svg>
+          <img src="assets/logo-nav.png" alt="">
         </div>
         <span data-i18n="app.title">别纠结</span>
       </div>
@@ -75,7 +67,7 @@
 
     <div class="sidebar-foot">
       <span id="sideLang">简体中文</span>
-      <span id="sideVersion">v0.8.4</span>
+      <span id="sideVersion">v0.9.0</span>
     </div>
   </aside>
 
@@ -100,7 +92,7 @@
           <span data-i18n="mode.rational">理性</span>
         </button>
         <button type="button" class="mode-card" data-mode="random" role="radio" aria-checked="false" data-i18n-title="mode.random.desc">
-          <svg class="mode-seal" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="#9b7636"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/><text x="12" y="16.5" font-family="'Songti SC','Noto Serif SC',serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">随</text></svg>
+          <svg class="mode-seal" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="var(--random-head)"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/><text x="12" y="16.5" font-family="'Songti SC','Noto Serif SC',serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">随</text></svg>
           <span data-i18n="mode.random">天意</span>
         </button>
         <button type="button" class="mode-card" data-mode="nature" role="radio" aria-checked="false" data-i18n-title="mode.nature.desc">
@@ -113,7 +105,7 @@
         </button>
         <button type="button" class="mode-card" data-mode="fengshui" role="radio" aria-checked="false" data-i18n-title="mode.fengshui.desc">
           <svg class="mode-seal" width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="21" height="21" rx="4" fill="#b45a42"/><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="0.8"/><text x="12" y="16.5" font-family="'Songti SC','Noto Serif SC',serif" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">局</text></svg>
-          <span data-i18n="mode.fengshui">风水</span>
+          <span data-i18n="mode.fengshui">国学</span>
         </button>
       </section>
 
@@ -213,6 +205,11 @@
             <div class="setting-copy"><b data-i18n="settings.theme">主题模式</b><span id="themeValue">跟随系统</span></div>
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
           </button>
+          <button type="button" class="setting-row" id="setSkin">
+            <span class="row-icon ic-skin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h1.5a2 2 0 0 0 0-4H12a1.5 1.5 0 0 1 0-3h2a5 5 0 0 0 0-10Z"/><circle cx="7.5" cy="12" r=".8" fill="currentColor"/><circle cx="10" cy="7.5" r=".8" fill="currentColor"/><circle cx="15.5" cy="8" r=".8" fill="currentColor"/></svg></span>
+            <div class="setting-copy"><b data-i18n="settings.skin">界面样式</b><span id="skinValue">原来的样子</span></div>
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
           <button type="button" class="setting-row" id="setDefaultMode">
             <span class="row-icon ic-mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
             <div class="setting-copy"><b data-i18n="settings.defaultMode">默认决策模式</b><span id="defaultModeValue">自动</span></div>
@@ -234,7 +231,7 @@
           </button>
           <button type="button" class="setting-row" id="setWeatherConfig">
             <span class="row-icon ic-weather"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 18a4 4 0 0 0 0-8 6 6 0 0 0-11.5 2A4 4 0 0 0 6 18z"/></svg></span>
-            <div class="setting-copy"><b data-i18n="settings.weather">自然天气配置</b><span id="weatherConfigValue" data-i18n="settings.weather.simulated">模拟数据</span></div>
+            <div class="setting-copy"><b data-i18n="settings.weather">自然天气配置</b><span id="weatherConfigValue" data-i18n="settings.weather.simulated">如果没有配置高德天气 API，会使用模拟数据</span></div>
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
           </button>
         </div>
@@ -255,7 +252,7 @@
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
           </button>
           <div class="setting-row">
-            <div class="setting-copy"><b data-i18n="settings.version">版本</b><span>0.8.4 · Desktop</span></div>
+            <div class="setting-copy"><b data-i18n="settings.version">版本</b><span>0.9.0 · Desktop</span></div>
           </div>
         </div>
         <div class="setting-version">别纠结 · Desktop Edition</div>
@@ -270,14 +267,15 @@
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
-<script src="scripts/i18n.js?v=6"></script>
-<script src="scripts/api.js?v=6"></script>
-<script src="scripts/brief.js?v=6"></script>
+<script src="vendor/zdog.dist.min.js?v=1.1.3"></script>
+<script src="scripts/i18n.js?v=8"></script>
+<script src="scripts/api.js?v=7"></script>
+<script src="scripts/brief.js?v=16"></script>
 <script src="scripts/voice.js?v=6"></script>
 <script src="scripts/chat.js?v=6"></script>
 <script src="scripts/archive.js?v=6"></script>
 <script src="scripts/stats.js?v=6"></script>
-<script src="scripts/settings.js?v=6"></script>
-<script src="scripts/app.js?v=6"></script>
+<script src="scripts/settings.js?v=8"></script>
+<script src="scripts/app.js?v=9"></script>
 </body>
 </html>

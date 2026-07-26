@@ -1,6 +1,6 @@
 # 别纠结后端 (FastAPI)
 
-独立 FastAPI 后端，为 `choice-assistant` Skill 提供 5 个 REST 接口。
+独立 FastAPI 后端，为 `choice-assistant` Skill 提供聊天、档案、统计和设置等 REST 接口。
 
 ## 依赖
 
@@ -20,14 +20,14 @@ pip install -r requirements.txt
 python main.py
 
 # 方式二：uvicorn 热重载
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+uvicorn main:app --reload --host 127.0.0.1 --port 8010
 ```
 
 启动后：
 
-- 服务地址：http://localhost:8000
-- API 文档：http://localhost:8000/docs
-- 健康检查：http://localhost:8000/
+- 服务地址：http://127.0.0.1:8010
+- API 文档：http://127.0.0.1:8010/docs
+- 健康检查：http://127.0.0.1:8010/
 
 ## 接口
 
@@ -43,7 +43,7 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 ```
 backend/
-├── main.py              # 应用入口，注册路由，监听 8000
+├── main.py              # 应用入口，注册路由，监听 8010
 ├── requirements.txt
 ├── routes/              # 路由（chat/modes/decision/archive/stats）
 ├── services/            # 业务服务（llm_service / modes_data）
@@ -52,9 +52,10 @@ backend/
 
 ## 说明
 
-- 所有接口当前返回 mock 数据，结构正确即可对接前端 / CLI。
-- 决策记录存储在进程内存中（`routes/decision.py` 的 `_DECISIONS`），重启后丢失。
-- `services/llm_service.py` 为 LLM 调用封装的 mock 实现，真实接入时在此替换。
+- LLM 使用 OpenAI 兼容接口，由用户配置 Key、模型和 Base URL。
+- 未配置 LLM Key 时，`/api/chat` 返回 402；只有用户主动开启 Demo 才会返回示例数据。
+- 天气使用高德开放平台，Key、Base URL 和城市由用户配置；缺少 Key 或 Base URL 时，自然模式使用明确标注的模拟天气。
+- 决策记录和设置保存在本机 SQLite，服务重启后仍在。
 
 ## Agent 集成
 

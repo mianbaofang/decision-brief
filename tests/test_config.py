@@ -74,6 +74,7 @@ def test_get_masked_config_masks_sensitive_fields(monkeypatch):
 
     db.set_config_value("llm_api_key", "sk-real-secret")
     db.set_config_value("weather_key", "amap-real-key")
+    db.set_config_value("weather_base_url", "https://restapi.amap.com/v3/weather/weatherInfo")
     db.set_config_value("llm_model", "gpt-4o-mini")
     db.set_config_value("weather_city", "北京")
 
@@ -83,10 +84,11 @@ def test_get_masked_config_masks_sensitive_fields(monkeypatch):
     # 非敏感字段不脱敏
     assert masked["llm_model"] == "gpt-4o-mini"
     assert masked["weather_city"] == "北京"
+    assert masked["weather_base_url"] == "https://restapi.amap.com/v3/weather/weatherInfo"
 
 
 def test_get_masked_config_empty_when_not_set(monkeypatch):
-    """未配置的敏感字段保持空字符串（不脱敏为 ***已配置***）。"""
+    """未配置的敏感字段保持空字符串。"""
     for env in list(config_mod.ENV_KEY_MAP.values()):
         monkeypatch.delenv(env, raising=False)
 
@@ -116,18 +118,22 @@ def test_has_llm_config_requires_all_three(monkeypatch):
     assert config_mod.has_llm_config() is True
 
 
-def test_has_weather_config_requires_appid_and_appsecret(monkeypatch):
-    """需要 appid + appsecret 两个都有才算 True。"""
+def test_has_weather_config_accepts_user_and_legacy_keys(monkeypatch):
+    """没有用户 Key 时为 False，并兼容旧版 appsecret。"""
     for env in list(config_mod.ENV_KEY_MAP.values()):
         monkeypatch.delenv(env, raising=False)
 
     assert config_mod.has_weather_config() is False
-
-    db.set_config_value("weather_appid", "appid-1")
-    assert config_mod.has_weather_config() is False
-
-    db.set_config_value("weather_appsecret", "secret-1")
-    assert config_mod.has_weather_config() is True
+    assert config_mod.has_weather_config({"weather_key": "", "weather_appsecret": "", "sentinel": True}) is False
+    assert config_mod.has_weather_config({"weather_key": "amap-key"}) is False
+    assert config_mod.has_weather_config({
+        "weather_key": "amap-key",
+        "weather_base_url": "https://restapi.amap.com/v3/weather/weatherInfo",
+    }) is True
+    assert config_mod.has_weather_config({
+        "weather_appsecret": "legacy-key",
+        "weather_base_url": "https://restapi.amap.com/v3/weather/weatherInfo",
+    }) is True
 
 
 def test_has_llm_config_env_overrides(monkeypatch):
@@ -180,6 +186,7 @@ def test_get_preferences_returns_defaults_when_empty():
     assert prefs["language"] == "zh-CN"
     assert prefs["default_mode"] == "auto"
     assert prefs["theme"] == "auto"
+    assert prefs["skin"] == "heritage"
     assert prefs["auto_speak"] is True
     assert prefs["tts_rate"] == 0.95
     assert prefs["tts_pitch"] == 1.05
@@ -200,6 +207,12 @@ def test_save_preferences_merges_with_defaults():
     prefs = config_mod.get_preferences()
     assert prefs["language"] == "yue"
     assert prefs["theme"] == "dark"
+
+
+def test_save_preferences_persists_skin():
+    saved = config_mod.save_preferences({"skin": "journal"})
+    assert saved["skin"] == "journal"
+    assert config_mod.get_preferences()["skin"] == "journal"
 
 
 def test_save_preferences_ignores_unknown_keys():

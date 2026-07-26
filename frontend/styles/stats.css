@@ -117,7 +117,7 @@
   transition: width 0.6s var(--ease-ios-decel);
 }
 .mode-bar[data-mode="rational"] .mb-fill { background: var(--lapis); }
-.mode-bar[data-mode="random"]   .mb-fill { background: var(--brass); }
+.mode-bar[data-mode="random"]   .mb-fill { background: var(--random-ink); }
 .mode-bar[data-mode="nature"]   .mb-fill { background: var(--moss); }
 .mode-bar[data-mode="dialogue"] .mb-fill { background: var(--plum); }
 .mode-bar[data-mode="fengshui"] .mb-fill { background: var(--cinnabar); }

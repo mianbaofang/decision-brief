@@ -3,18 +3,20 @@
 环境隔离由 conftest.py 的 isolate_paths fixture 负责：
   - DB_PATH 指向临时文件
   - CONFIG_FILE_PATH 指向临时文件
-  - 未配置 LLM/天气 → /api/chat 走 mock 分支，不发起网络请求
+  - 测试显式开启 Demo，让 /api/chat 走 mock 分支，不发起 LLM 请求
 """
 
 import pytest
 from fastapi.testclient import TestClient
 
 import main
+import config as config_mod
 
 
 @pytest.fixture
 def client():
     """每个测试用全新 TestClient。DB 路径已由 conftest.isolate_paths 隔离。"""
+    config_mod.save_preferences({"demo_mode": True})
     with TestClient(main.app) as c:
         yield c
 
@@ -53,15 +55,16 @@ def test_get_modes(client):
 
 
 def test_get_config_returns_masked(client):
-    """GET /api/config 返回脱敏配置（无配置时 hasKey=False）。
+    """GET /api/config 返回脱敏配置。
 
-    v0.7.0 起 weather 用 hasKey（高德单 Key）；hasAppsecret 为兼容旧前端的别名。
+    weather.hasKey 表示用户是否配置了高德 Key；hasAppsecret 是兼容旧前端的别名。
     """
     resp = client.get("/api/config")
     assert resp.status_code == 200
     body = resp.json()
     assert body["llm"]["hasKey"] is False
     assert body["weather"]["hasKey"] is False
+    assert body["weather"]["hasBaseUrl"] is False
     assert body["weather"]["hasAppsecret"] is False  # 兼容别名，等价于 hasKey
     assert body["hasLlm"] is False
     assert body["hasWeather"] is False
@@ -86,6 +89,22 @@ def test_post_config_then_get_shows_has_key(client):
     assert body["llm"]["baseUrl"] == "https://api.openai.com/v1"
     # apiKey 永不回传明文
     assert "sk-test-xxx" not in resp.text
+
+
+def test_post_weather_config_requires_key_and_base_url(client):
+    resp = client.post("/api/config", json={"weather_key": "amap-test-key", "weather_city": "杭州"})
+    assert resp.status_code == 200
+    assert resp.json()["weather"]["hasKey"] is True
+    assert resp.json()["hasWeather"] is False
+
+    resp = client.post("/api/config", json={
+        "weather_base_url": "https://restapi.amap.com/v3/weather/weatherInfo",
+    })
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["weather"]["baseUrl"] == "https://restapi.amap.com/v3/weather/weatherInfo"
+    assert body["weather"]["hasBaseUrl"] is True
+    assert body["hasWeather"] is True
 
 
 # ─── /api/chat ──────────────────────────────────────────────
@@ -150,6 +169,9 @@ def test_chat_nature_returns_nature_brief(client):
     assert body["nature"]["signal"]
     assert body["nature"]["poem"]
     assert body["nature"]["suggestion"]
+    assert body["nature"]["moonPhase"]
+    assert body["nature"]["weatherStatus"] == "not_configured"
+    assert body["nature"]["signals"]["weights"]
     # nature 模式 brief 应为 null
     assert body["brief"] is None
 
@@ -311,14 +333,18 @@ def test_preferences_get_returns_defaults(client):
 
 def test_preferences_post_persists(client):
     """POST /api/preferences 保存后 GET 能读到。"""
-    resp = client.post("/api/preferences", json={"language": "yue", "theme": "dark"})
+    resp = client.post("/api/preferences", json={"language": "yue", "theme": "dark", "skin": "console", "demo_mode": True})
     assert resp.status_code == 200
     saved = resp.json()
     assert saved["language"] == "yue"
     assert saved["theme"] == "dark"
+    assert saved["skin"] == "console"
+    assert saved["demo_mode"] is True
 
     # GET 验证持久化
     resp = client.get("/api/preferences")
     prefs = resp.json()
     assert prefs["language"] == "yue"
     assert prefs["theme"] == "dark"
+    assert prefs["skin"] == "console"
+    assert prefs["demo_mode"] is True

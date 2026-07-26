@@ -91,11 +91,11 @@ html,body{
   display:flex;align-items:center;gap:14px;
 }
 .cover-seal{
-  width:52px;height:52px;border-radius:10px;background:var(--brand-seal);
+  width:52px;height:52px;border-radius:10px;background:#087e7d;
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;padding:6px;
+  overflow:hidden;padding:0;
 }
-.cover-seal svg{width:100%;height:100%}
+.brand-logo-img{width:100%;height:100%;display:block;object-fit:cover}
 .cover-title{
   font-family:var(--serif);font-size:28px;font-weight:700;letter-spacing:.02em;
 }
@@ -243,6 +243,65 @@ html,body{
 .composer-mode .ic{font-size:22px}
 .composer-mode b{color:var(--ink);font-weight:600}
 
+/* ===== v0.9.0 新增功能 ===== */
+.feature-showcase{
+  width:100%;height:100%;padding:64px 58px 70px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+}
+.feature-heading{text-align:center}
+.feature-heading .shot-tag{display:block;margin-bottom:9px}
+.feature-heading h2{font-family:var(--serif);font-size:40px;line-height:1.2}
+.feature-heading p{margin-top:10px;color:var(--ink-soft);font-size:16px;line-height:1.65}
+.skin-grid{width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.skin-card{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 12px 30px -20px rgba(0,0,0,.3)}
+.skin-preview{height:246px;padding:12px;display:grid;grid-template-columns:46px 1fr;gap:9px;background:var(--skin-bg);color:var(--skin-ink)}
+.skin-side{border:1px solid var(--skin-line);background:var(--skin-panel);padding:8px 6px;display:flex;flex-direction:column;gap:7px}
+.skin-side i{height:5px;background:var(--skin-line);display:block;border-radius:2px}
+.skin-side i:first-child{height:22px;background:var(--skin-accent);margin-bottom:4px}
+.skin-main{display:flex;flex-direction:column;gap:8px}
+.skin-main strong{font-family:var(--serif);font-size:14px;line-height:1.2}
+.skin-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.skin-modes i{height:36px;border:1px solid var(--skin-line);background:var(--skin-panel);display:block;border-radius:var(--skin-radius)}
+.skin-brief{flex:1;border:1px solid var(--skin-line);background:var(--skin-panel);border-radius:var(--skin-radius);padding:8px;display:flex;flex-direction:column;gap:6px}
+.skin-brief i{height:6px;background:var(--skin-line);display:block;border-radius:2px}
+.skin-brief i:first-child{height:20px;background:var(--skin-accent)}
+.skin-label{padding:11px 12px 12px;border-top:1px solid var(--line)}
+.skin-label b{display:block;font-size:14px}.skin-label span{font-size:12px;color:var(--muted)}
+.skin-card.heritage{--skin-bg:#f4f1e8;--skin-panel:#fffdf7;--skin-ink:#26251f;--skin-line:#d8d0be;--skin-accent:#4d6b5a;--skin-radius:7px}
+.skin-card.workbench{--skin-bg:#f3f5f6;--skin-panel:#fff;--skin-ink:#25282a;--skin-line:#d8dde0;--skin-accent:#2f6f68;--skin-radius:4px}
+.skin-card.journal{--skin-bg:#faf9f5;--skin-panel:#fff;--skin-ink:#161616;--skin-line:#b8b6ae;--skin-accent:#181818;--skin-radius:1px}
+.skin-card.console{--skin-bg:#edf0f2;--skin-panel:#f9fafb;--skin-ink:#202326;--skin-line:#cbd1d5;--skin-accent:#355c7d;--skin-radius:4px}
+.slide.active .skin-card{animation:featureRise .5s both}.slide.active .skin-card:nth-child(2){animation-delay:.08s}.slide.active .skin-card:nth-child(3){animation-delay:.16s}.slide.active .skin-card:nth-child(4){animation-delay:.24s}
+@keyframes featureRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.effect-grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:12px 14px}
+.effect-mini{height:142px;border:1px solid var(--line);border-radius:8px;background:#fff;display:grid;grid-template-columns:1fr 95px;align-items:center;padding:13px 16px;overflow:hidden}
+.effect-copy b{display:block;font-size:15px;margin-bottom:5px}.effect-copy span{font-size:12px;color:var(--muted);line-height:1.45}
+.effect-art{height:104px;display:grid;place-items:center;position:relative}
+.mini-wheel{width:72px;height:72px;border-radius:50%;border:2px solid #d5d9da;background:conic-gradient(#f7f8f8 0 60deg,#dfeeed 60deg 120deg,#f7f8f8 120deg 180deg,#e8edf5 180deg 240deg,#f7f8f8 240deg 300deg,#f3e9dc 300deg);position:relative}
+.mini-wheel::before{content:"";position:absolute;width:3px;height:30px;background:#2e6f6b;left:33px;top:8px;transform-origin:50% 28px;border-radius:3px}
+.mini-wheel::after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:#2e6f6b;left:29px;top:30px}
+.slide.active .mini-wheel::before{animation:needleSpin 2.2s cubic-bezier(.18,.8,.22,1) both}
+@keyframes needleSpin{from{transform:rotate(0)}to{transform:rotate(1110deg)}}
+.mini-sticks{width:64px;height:60px;border:2px solid #bd8b54;border-top:0;border-radius:7px 7px 18px 18px;background:#e7bd80;position:relative;margin-top:22px}
+.mini-sticks i{position:absolute;width:6px;height:64px;bottom:30px;background:#f2d29c;border:1px solid #bd8b54;border-radius:3px;transform-origin:bottom}
+.mini-sticks i:nth-child(1){left:12px;transform:rotate(-10deg)}.mini-sticks i:nth-child(2){left:23px;transform:rotate(-3deg)}.mini-sticks i:nth-child(3){left:34px;transform:rotate(5deg)}.mini-sticks i:nth-child(4){left:45px;transform:rotate(11deg)}
+.slide.active .mini-sticks i:nth-child(3){animation:stickPick 2.1s ease-in-out both}
+@keyframes stickPick{0%,35%{transform:translateY(0) rotate(5deg)}55%{transform:translateY(-20px) rotate(2deg)}100%{transform:translateY(-10px) rotate(3deg);background:#fff0c7}}
+.mini-die{width:48px;height:48px;position:relative;transform-style:preserve-3d;transform:rotateX(-22deg) rotateY(32deg)}
+.mini-die i{position:absolute;inset:0;border:1px solid #c8cdd1;background:#fff;border-radius:8px;box-shadow:inset 0 0 12px rgba(80,90,96,.08)}
+.mini-die i:nth-child(1){transform:translateZ(24px);background:radial-gradient(circle at 50% 50%,#2f5f70 0 5px,transparent 5.5px),#fff}
+.mini-die i:nth-child(2){transform:rotateY(90deg) translateZ(24px);background:radial-gradient(circle at 28% 28%,#bd6f62 0 4px,transparent 4.5px),radial-gradient(circle at 72% 72%,#bd6f62 0 4px,transparent 4.5px),#f7f8f8}
+.mini-die i:nth-child(3){transform:rotateX(90deg) translateZ(24px);background:radial-gradient(circle at 25% 25%,#be9851 0 4px,transparent 4.5px),radial-gradient(circle at 75% 25%,#be9851 0 4px,transparent 4.5px),radial-gradient(circle at 50% 50%,#be9851 0 4px,transparent 4.5px),#f2f4f5}
+.slide.active .mini-die{animation:dieRoll 1.9s cubic-bezier(.2,.75,.2,1) both}
+@keyframes dieRoll{from{transform:rotateX(-22deg) rotateY(32deg)}60%{transform:rotateX(740deg) rotateY(590deg) scale(1.08)}to{transform:rotateX(338deg) rotateY(392deg)}}
+.mini-cards{width:88px;height:72px;position:relative}.mini-cards i{position:absolute;width:34px;height:52px;border-radius:5px;border:1px solid #9aaebd;background:repeating-linear-gradient(45deg,#6d8fa7 0 3px,#e7eef2 3px 6px);left:27px;top:12px;transform-origin:50% 100%}
+.mini-cards i:nth-child(1){transform:rotate(-30deg)}.mini-cards i:nth-child(2){transform:rotate(-18deg)}.mini-cards i:nth-child(3){transform:rotate(-6deg)}.mini-cards i:nth-child(4){transform:rotate(6deg)}.mini-cards i:nth-child(5){transform:rotate(18deg)}.mini-cards i:nth-child(6){transform:rotate(30deg)}
+.slide.active .mini-cards i:nth-child(4){animation:cardPick 2.1s ease both}
+@keyframes cardPick{0%,35%{transform:rotate(6deg)}65%{transform:translateY(-14px) rotate(4deg) rotateY(90deg)}100%{transform:translateY(-8px) rotate(0) rotateY(180deg);background:#fff2d9;border-color:#be8d48}}
+.mini-ticket{width:78px;height:82px;border:2px solid #657681;border-radius:7px;background:#e8ecee;overflow:hidden;position:relative;padding:7px}.mini-ticket::after{content:"";position:absolute;left:0;right:0;top:38px;height:2px;background:#657681}.ticket-strip{display:flex;flex-direction:column;gap:5px;transform:translateY(-2px)}.ticket-strip i{height:22px;background:#fff;border-left:5px solid #6b8ca4;box-shadow:0 0 0 1px #cfd7db}.slide.active .ticket-strip{animation:ticketRoll 2s cubic-bezier(.2,.75,.2,1) both}@keyframes ticketRoll{from{transform:translateY(-2px)}to{transform:translateY(-55px)}}
+.mini-ink{width:82px;height:82px;position:relative}.mini-ink::before{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#263f3c;left:35px;top:35px}.mini-ink i{position:absolute;width:34px;height:2px;background:#a6b7b2;left:41px;top:40px;transform-origin:left center}.mini-ink i::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:#dfe7e4;right:-4px;top:-4px;border:1px solid #8ba19a}.mini-ink i:nth-child(1){transform:rotate(0)}.mini-ink i:nth-child(2){transform:rotate(60deg)}.mini-ink i:nth-child(3){transform:rotate(120deg)}.mini-ink i:nth-child(4){transform:rotate(180deg)}.mini-ink i:nth-child(5){transform:rotate(240deg)}.mini-ink i:nth-child(6){transform:rotate(300deg)}.slide.active .mini-ink i:nth-child(5){animation:inkPick 1.8s ease both}@keyframes inkPick{0%{background:#a6b7b2}60%,100%{background:#ba785e;height:4px}}
+
 /* ===== 页码指示器 ===== */
 .pager{
   position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
@@ -262,10 +321,10 @@ html,body{
   font-size:14px;color:var(--ink-soft);z-index:10;
 }
 .corner-logo .s{
-  width:28px;height:28px;border-radius:6px;background:var(--brand-seal);
-  display:grid;place-items:center;overflow:hidden;padding:3px;
+  width:28px;height:28px;border-radius:6px;background:#087e7d;
+  display:grid;place-items:center;overflow:hidden;padding:0;
 }
-.corner-logo .s svg{width:100%;height:100%}
+.corner-logo .s img{width:100%;height:100%;display:block;object-fit:cover}
 .corner-lang{
   position:absolute;top:22px;right:40px;z-index:10;
 }
@@ -288,7 +347,7 @@ html,body{
 
   <!-- 角标 -->
   <div class="corner-logo">
-    <div class="s"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5,7 C14,2 8,14 18,22 C14,28 18,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M10,5 C2,12 20,16 10,24 C6,30 14,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M16,6 C8,10 28,18 12,26 C10,30 16,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M24,6 C32,10 12,18 28,26 C30,30 24,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M30,5 C38,12 20,16 30,24 C34,30 26,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M35,7 C26,2 32,14 22,22 C26,28 22,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20,5 C20,14 20,24 20,35" stroke="rgba(244,245,239,0.95)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="20" cy="35" r="1.5" fill="rgba(244,245,239,0.95)"/></svg></div>
+    <div class="s"><img src="images/logo-nav.png" alt=""></div>
     <span>别纠结 · Decision Brief</span>
   </div>
   <div class="corner-lang">
@@ -302,18 +361,18 @@ html,body{
     <div class="slide" data-dur="4000">
       <div class="cover">
         <div class="cover-brand">
-          <div class="cover-seal"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5,7 C14,2 8,14 18,22 C14,28 18,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M10,5 C2,12 20,16 10,24 C6,30 14,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M16,6 C8,10 28,18 12,26 C10,30 16,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M24,6 C32,10 12,18 28,26 C30,30 24,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M30,5 C38,12 20,16 30,24 C34,30 26,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M35,7 C26,2 32,14 22,22 C26,28 22,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20,5 C20,14 20,24 20,35" stroke="rgba(244,245,239,0.95)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="20" cy="35" r="1.5" fill="rgba(244,245,239,0.95)"/></svg></div>
+          <div class="cover-seal"><img class="brand-logo-img" src="images/logo-nav.png" alt="别纠结 Logo"></div>
           <div class="cover-title">别纠结 · Decision Brief</div>
         </div>
         <h1 class="cover-h1">先把问题压成一句话。</h1>
-        <p class="cover-sub">文字、语音、图片皆可输入——你说选择，我负责把焦虑拆成可判断的证据、风险和下一步动作。</p>
+        <p class="cover-sub">写一句话、说一段语音，或者放一张图片。它会把纠结拆成证据、风险和下一步。</p>
         <div class="cover-seals">
           <div class="cover-seal-item cs-1" style="transition-delay:.1s"><div class="c">自</div><div class="l">自动</div></div>
           <div class="cover-seal-item cs-2" style="transition-delay:.2s"><div class="c">理</div><div class="l">理性</div></div>
           <div class="cover-seal-item cs-3" style="transition-delay:.3s"><div class="c">随</div><div class="l">天意</div></div>
           <div class="cover-seal-item cs-4" style="transition-delay:.4s"><div class="c">然</div><div class="l">自然</div></div>
           <div class="cover-seal-item cs-5" style="transition-delay:.5s"><div class="c">问</div><div class="l">对话</div></div>
-          <div class="cover-seal-item cs-6" style="transition-delay:.6s"><div class="c">局</div><div class="l">风水</div></div>
+          <div class="cover-seal-item cs-6" style="transition-delay:.6s"><div class="c">局</div><div class="l">国学</div></div>
         </div>
         <div class="cover-chips">
           <span class="cover-chip hot" style="transition-delay:.7s">⌨️ 打字</span>
@@ -331,15 +390,15 @@ html,body{
         </div>
         <div class="shot-info">
           <div class="shot-tag">STEP 01</div>
-          <h2 class="shot-title">六个印章<br>六种视角</h2>
-          <p class="shot-desc">米白纸质背景，六个单字印章按钮。不知道选哪个？交给"自动"，系统根据你的措辞智能路由。</p>
+          <h2 class="shot-title">六种方式<br>选一种就能开始</h2>
+          <p class="shot-desc">小事可以随机，重要选择可以认真分析。拿不准用哪种时，交给“自动”判断。</p>
           <div class="shot-points">
             <div class="shot-point"><span class="dot" style="background:var(--accent)"></span><span>自 · 自动识别问题类型</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--rational)"></span><span>理 · 理性分析高风险决策</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--random)"></span><span>随 · 天意随机解决小事</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>然 · 自然启示换换角度</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>问 · 对话引导听见自己</span></div>
-            <div class="shot-point"><span class="dot" style="background:var(--fengshui)"></span><span>局 · 风水参考仪式感</span></div>
+            <div class="shot-point"><span class="dot" style="background:var(--fengshui)"></span><span>局 · 国学参考，仅作娱乐</span></div>
           </div>
         </div>
       </div>
@@ -349,8 +408,8 @@ html,body{
     <div class="slide" data-dur="5500">
       <div class="composer-feature">
         <div class="composer-tag">STEP 02 · NEW</div>
-        <h2 class="composer-title">大圆角输入框，三种方式随意切换</h2>
-        <p class="composer-sub">左侧图片上传，中间多行自适应文本，右侧麦克风和青色发送按钮。宽大不局促，打字舒服，说话顺手，看图决策也能做。</p>
+        <h2 class="composer-title">文字、语音和图片都能用</h2>
+        <p class="composer-sub">直接输入问题，也可以说出来或加一张图片。三种输入方式最后会生成同一份决策简报。</p>
         <div class="composer-big" id="demoComposer">
           <div class="composer-preview-row" id="demoPrevRow">
             <div class="composer-thumb" id="demoThumb">图</div>
@@ -376,7 +435,43 @@ html,body{
       </div>
     </div>
 
-    <!-- Slide 3: 理性分析 -->
+    <!-- Slide 3: 四套界面 -->
+    <div class="slide" data-dur="4300">
+      <div class="feature-showcase">
+        <div class="feature-heading">
+          <span class="shot-tag">v0.9.0 · 界面样式</span>
+          <h2>四套界面，随时切换</h2>
+          <p>内容和操作不变，只换你看着舒服的样子。</p>
+        </div>
+        <div class="skin-grid">
+          <div class="skin-card heritage"><div class="skin-preview"><div class="skin-side"><i></i><i></i><i></i><i></i></div><div class="skin-main"><strong>今天想解决什么？</strong><div class="skin-modes"><i></i><i></i><i></i></div><div class="skin-brief"><i></i><i></i><i></i><i></i></div></div></div><div class="skin-label"><b>原来的样子</b><span>纸张与印章</span></div></div>
+          <div class="skin-card workbench"><div class="skin-preview"><div class="skin-side"><i></i><i></i><i></i><i></i></div><div class="skin-main"><strong>今天想解决什么？</strong><div class="skin-modes"><i></i><i></i><i></i></div><div class="skin-brief"><i></i><i></i><i></i><i></i></div></div></div><div class="skin-label"><b>安静工作台</b><span>紧凑、清楚</span></div></div>
+          <div class="skin-card journal"><div class="skin-preview"><div class="skin-side"><i></i><i></i><i></i><i></i></div><div class="skin-main"><strong>DECISION / 026</strong><div class="skin-modes"><i></i><i></i><i></i></div><div class="skin-brief"><i></i><i></i><i></i><i></i></div></div></div><div class="skin-label"><b>决策日志</b><span>黑白记录感</span></div></div>
+          <div class="skin-card console"><div class="skin-preview"><div class="skin-side"><i></i><i></i><i></i><i></i></div><div class="skin-main"><strong>决策模块</strong><div class="skin-modes"><i></i><i></i><i></i></div><div class="skin-brief"><i></i><i></i><i></i><i></i></div></div></div><div class="skin-label"><b>模块化工作台</b><span>面板式布局</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: 六种随机动画 -->
+    <div class="slide" data-dur="4300">
+      <div class="feature-showcase">
+        <div class="feature-heading">
+          <span class="shot-tag">v0.9.0 · 随机决策</span>
+          <h2>同样是随机，不必每次都转盘</h2>
+          <p>六种实时动画会按问题随机出现，结果仍对应 1 到 6 个选项。</p>
+        </div>
+        <div class="effect-grid">
+          <div class="effect-mini"><div class="effect-copy"><b>指针盘</b><span>旋转后停在一个选项</span></div><div class="effect-art"><div class="mini-wheel"></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>签筒</b><span>晃动两次，弹出一支签</span></div><div class="effect-art"><div class="mini-sticks"><i></i><i></i><i></i><i></i></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>立体骰子</b><span>翻滚后显示 1 到 6 点</span></div><div class="effect-art"><div class="mini-die"><i></i><i></i><i></i></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>六张抽卡</b><span>洗牌后翻开一张</span></div><div class="effect-art"><div class="mini-cards"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>纸条机</b><span>滚动选项，停在结果上</span></div><div class="effect-art"><div class="mini-ticket"><div class="ticket-strip"><i></i><i></i><i></i><i></i></div></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>墨迹择路</b><span>六条路径亮起一条</span></div><div class="effect-art"><div class="mini-ink"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: 理性分析 -->
     <div class="slide" data-dur="4000">
       <div class="shot-layout">
         <div class="shot-visual">
@@ -384,7 +479,7 @@ html,body{
         </div>
         <div class="shot-info">
           <div class="shot-tag" style="color:var(--rational)">MODE · 理</div>
-          <h2 class="shot-title">理性分析<br>收益风险一目了然</h2>
+          <h2 class="shot-title">理性分析<br>把收益和风险分开看</h2>
           <p class="shot-desc">适合辞职、买房、大额消费等高后悔成本选择。结构化拆解：收益、风险、可逆性、最小下一步。</p>
           <div class="shot-points">
             <div class="shot-point"><span class="dot" style="background:var(--rational)"></span><span>收益清单 vs 风险清单</span></div>
@@ -405,11 +500,11 @@ html,body{
         <div class="shot-info">
           <div class="shot-tag" style="color:var(--nature)">MODE · 然</div>
           <h2 class="shot-title">自然启示<br>换个角度喘口气</h2>
-          <p class="shot-desc">情绪卡住的时候，理性没用。结合时间、天气、风向，用自然意象给你一个换角度的信号。</p>
+          <p class="shot-desc">不想继续算利弊时，可以借时间、天气和风向换个角度。天气信息由你自己配置。</p>
           <div class="shot-points">
-            <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>高德天气Key已内置</span></div>
+            <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>高德 Key、Base URL 和城市由你填写</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>实时天气+风向+时辰</span></div>
-            <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>不是神谕，是喘息的切口</span></div>
+            <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>没有高德 API 时显示模拟天气</span></div>
           </div>
         </div>
       </div>
@@ -424,9 +519,9 @@ html,body{
         <div class="shot-info">
           <div class="shot-tag" style="color:var(--dialogue)">MODE · 问</div>
           <h2 class="shot-title">对话引导<br>听见自己的声音</h2>
-          <p class="shot-desc">你心里其实已经有答案，只是不敢面对。三到五轮反问，帮你听见自己真正想说的那个字。</p>
+          <p class="shot-desc">系统连续问三到五个问题，帮你把没说清的顾虑和偏好写下来。</p>
           <div class="shot-points">
-            <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>多轮追问，层层递进</span></div>
+            <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>问题和回答一起保存</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>顾虑澄清，不替你回答</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>适合"其实我知道但不敢说"</span></div>
           </div>
@@ -442,7 +537,7 @@ html,body{
         </div>
         <div class="shot-info">
           <div class="shot-tag">ARCHIVE</div>
-          <h2 class="shot-title">自动归档<br>每个决定都留痕</h2>
+          <h2 class="shot-title">自动归档<br>以后还能回来看看</h2>
           <p class="shot-desc">所有决策自动保存本地，随时标记"已执行"或"后悔"。桌面端侧栏实时同步。</p>
           <div class="shot-points">
             <div class="shot-point"><span class="dot"></span><span>SQLite本地持久化</span></div>
@@ -481,13 +576,13 @@ html,body{
         </div>
         <div class="shot-info">
           <div class="shot-tag">SETTINGS</div>
-          <h2 class="shot-title">TTS朗读·多主题<br>开箱即用</h2>
-          <p class="shot-desc">Edge TTS免费内置，天气Key已内置，配好自己的LLM Key即可使用真实AI分析。</p>
+          <h2 class="shot-title">朗读、语言和接口<br>都在设置里</h2>
+          <p class="shot-desc">Edge TTS 不需要 Key。LLM 与高德天气接口的信息由你自己填写。</p>
           <div class="shot-points">
             <div class="shot-point"><span class="dot"></span><span>Edge TTS免费免Key</span></div>
             <div class="shot-point"><span class="dot"></span><span>浅色/深色/跟随系统</span></div>
             <div class="shot-point"><span class="dot"></span><span>6国语言国际化</span></div>
-            <div class="shot-point"><span class="dot"></span><span>无Key返回mock可预览</span></div>
+            <div class="shot-point"><span class="dot"></span><span>没有高德 API 时使用模拟天气</span></div>
           </div>
         </div>
       </div>
@@ -496,9 +591,9 @@ html,body{
     <!-- Slide 9: 结尾 CTA -->
     <div class="slide" data-dur="4500">
       <div class="cover">
-        <div class="cover-seal" style="background:var(--accent);width:64px;height:64px;border-radius:12px;padding:8px"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5,7 C14,2 8,14 18,22 C14,28 18,33 20,35" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M10,5 C2,12 20,16 10,24 C6,30 14,33 20,35" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M16,6 C8,10 28,18 12,26 C10,30 16,33 20,35" stroke="rgba(255,255,255,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M24,6 C32,10 12,18 28,26 C30,30 24,33 20,35" stroke="rgba(255,255,255,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M30,5 C38,12 20,16 30,24 C34,30 26,33 20,35" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M35,7 C26,2 32,14 22,22 C26,28 22,33 20,35" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20,5 C20,14 20,24 20,35" stroke="rgba(255,255,255,1.0)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="20" cy="35" r="1.5" fill="rgba(255,255,255,1.0)"/></svg></div>
+        <div class="cover-seal" style="width:64px;height:64px;border-radius:12px"><img class="brand-logo-img" src="images/logo-nav.png" alt="别纠结 Logo"></div>
         <h1 class="cover-h1" style="font-size:56px">让选择不再内耗。</h1>
-        <p class="cover-sub">三分钟跑起来，开箱即用。<br>未配Key也能体验完整UI，天气服务已内置。</p>
+        <p class="cover-sub">本地运行，数据保存在自己的电脑里。<br>LLM 和高德天气接口按需填写，不填也能先看 Demo 和模拟天气。</p>
         <div style="display:flex;gap:14px;margin-top:12px">
           <div style="padding:14px 28px;border-radius:12px;background:var(--accent);color:#fff;font-size:15px;font-weight:500;box-shadow:0 8px 20px -8px rgba(49,125,120,.5)">★ 查看 GitHub</div>
           <div style="padding:14px 28px;border-radius:12px;border:1px solid var(--line);font-size:15px;font-weight:500;color:var(--ink);font-family:'SF Mono',Menlo,Consolas,monospace">pip install -e ".[dev]"</div>

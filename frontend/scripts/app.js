@@ -126,7 +126,7 @@ const App = (() => {
     drawer.setAttribute('aria-hidden', 'false');
     // 懒加载内容
     if (type === 'archive') Archive.load();
-    if (type === 'stats') Stats.load();
+    if (type === 'stats') Stats.load(true);
   }
 
   function closeDrawer() {
@@ -182,7 +182,17 @@ const App = (() => {
     }
     document.documentElement.setAttribute('data-theme', eff);
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', eff === 'dark' ? '#1a1b17' : '#f4f5ef');
+    if (meta) {
+      const paper = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim();
+      meta.setAttribute('content', paper || (eff === 'dark' ? '#1a1b17' : '#f4f5ef'));
+    }
+  }
+
+  function applySkin(skin) {
+    const allowed = new Set(['heritage', 'workbench', 'journal', 'console']);
+    document.documentElement.setAttribute('data-skin', allowed.has(skin) ? skin : 'heritage');
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', getComputedStyle(document.documentElement).getPropertyValue('--paper').trim());
   }
   // 监听系统主题变化
   function bindSystemTheme() {
@@ -203,6 +213,7 @@ const App = (() => {
     } else {
       applyTheme('auto');
     }
+    applySkin(prefs.skin || 'heritage');
     if (prefs.default_mode && Chat.getMode) {
       Chat.setMode(prefs.default_mode);
     }
@@ -223,7 +234,7 @@ const App = (() => {
         container.innerHTML = '<div style="font-size:11px;color:#999;padding:8px;">' + I18N.t('archive.empty') + '</div>';
         return;
       }
-      const modeColors = { auto: '#317d78', rational: '#365385', random: '#9b7636', nature: '#486a55', dialogue: '#69526f', fengshui: '#b45a42' };
+      const modeColors = { auto: '#317d78', rational: '#365385', random: '#317d78', nature: '#486a55', dialogue: '#69526f', fengshui: '#b45a42' };
       list.forEach(d => {
         const item = document.createElement('div');
         item.className = 'recent-item';
@@ -337,6 +348,7 @@ const App = (() => {
     openDrawer,
     closeDrawer,
     applyTheme,
+    applySkin,
     applyPrefs,
     loadSidebarRecent,
     showKeyBanner: showBanner,

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-skin="heritage">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f4f5ef">
+<title>随机效果预览 · 别纠结</title>
+<link rel="stylesheet" href="styles/main.css?v=7">
+<link rel="stylesheet" href="styles/chat.css?v=17">
+<link rel="stylesheet" href="styles/desktop.css?v=9">
+<link rel="stylesheet" href="styles/skins.css?v=7">
+<link rel="stylesheet" href="styles/random-preview.css?v=1">
+</head>
+<body class="random-preview-page">
+<header class="preview-toolbar">
+  <div class="preview-brand">
+    <img src="assets/logo-nav.png" alt="别纠结">
+    <div>
+      <h1>随机效果</h1>
+      <p>六种抽取方式，点击右侧按钮可以重新播放。</p>
+    </div>
+  </div>
+  <div class="preview-skins" aria-label="界面样式">
+    <button type="button" class="preview-skin is-active" data-skin="heritage">原来的样子</button>
+    <button type="button" class="preview-skin" data-skin="workbench">安静工作台</button>
+    <button type="button" class="preview-skin" data-skin="journal">决策日志</button>
+    <button type="button" class="preview-skin" data-skin="console">模块工作台</button>
+  </div>
+</header>
+
+<main class="preview-grid" id="previewGrid"></main>
+
+<script src="vendor/zdog.dist.min.js?v=1.1.3"></script>
+<script src="scripts/i18n.js?v=7"></script>
+<script src="scripts/api.js?v=7"></script>
+<script src="scripts/brief.js?v=16"></script>
+<script src="scripts/random-preview.js?v=1"></script>
+</body>
+</html>

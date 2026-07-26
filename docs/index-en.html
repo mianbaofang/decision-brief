@@ -91,11 +91,11 @@ html,body{
   display:flex;align-items:center;gap:14px;
 }
 .cover-seal{
-  width:52px;height:52px;border-radius:10px;background:var(--brand-seal);
+  width:52px;height:52px;border-radius:10px;background:#087e7d;
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;padding:6px;
+  overflow:hidden;padding:0;
 }
-.cover-seal svg{width:100%;height:100%}
+.brand-logo-img{width:100%;height:100%;display:block;object-fit:cover}
 .cover-title{
   font-family:var(--serif);font-size:28px;font-weight:700;letter-spacing:.02em;
 }
@@ -243,6 +243,65 @@ html,body{
 .composer-mode .ic{font-size:22px}
 .composer-mode b{color:var(--ink);font-weight:600}
 
+/* ===== v0.9.0 feature slides ===== */
+.feature-showcase{
+  width:100%;height:100%;padding:64px 58px 70px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+}
+.feature-heading{text-align:center}
+.feature-heading .shot-tag{display:block;margin-bottom:9px}
+.feature-heading h2{font-family:var(--serif);font-size:40px;line-height:1.2}
+.feature-heading p{margin-top:10px;color:var(--ink-soft);font-size:16px;line-height:1.65}
+.skin-grid{width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.skin-card{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;box-shadow:0 12px 30px -20px rgba(0,0,0,.3)}
+.skin-preview{height:246px;padding:12px;display:grid;grid-template-columns:46px 1fr;gap:9px;background:var(--skin-bg);color:var(--skin-ink)}
+.skin-side{border:1px solid var(--skin-line);background:var(--skin-panel);padding:8px 6px;display:flex;flex-direction:column;gap:7px}
+.skin-side i{height:5px;background:var(--skin-line);display:block;border-radius:2px}
+.skin-side i:first-child{height:22px;background:var(--skin-accent);margin-bottom:4px}
+.skin-main{display:flex;flex-direction:column;gap:8px}
+.skin-main strong{font-family:var(--serif);font-size:14px;line-height:1.2}
+.skin-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.skin-modes i{height:36px;border:1px solid var(--skin-line);background:var(--skin-panel);display:block;border-radius:var(--skin-radius)}
+.skin-brief{flex:1;border:1px solid var(--skin-line);background:var(--skin-panel);border-radius:var(--skin-radius);padding:8px;display:flex;flex-direction:column;gap:6px}
+.skin-brief i{height:6px;background:var(--skin-line);display:block;border-radius:2px}
+.skin-brief i:first-child{height:20px;background:var(--skin-accent)}
+.skin-label{padding:11px 12px 12px;border-top:1px solid var(--line)}
+.skin-label b{display:block;font-size:14px}.skin-label span{font-size:12px;color:var(--muted)}
+.skin-card.heritage{--skin-bg:#f4f1e8;--skin-panel:#fffdf7;--skin-ink:#26251f;--skin-line:#d8d0be;--skin-accent:#4d6b5a;--skin-radius:7px}
+.skin-card.workbench{--skin-bg:#f3f5f6;--skin-panel:#fff;--skin-ink:#25282a;--skin-line:#d8dde0;--skin-accent:#2f6f68;--skin-radius:4px}
+.skin-card.journal{--skin-bg:#faf9f5;--skin-panel:#fff;--skin-ink:#161616;--skin-line:#b8b6ae;--skin-accent:#181818;--skin-radius:1px}
+.skin-card.console{--skin-bg:#edf0f2;--skin-panel:#f9fafb;--skin-ink:#202326;--skin-line:#cbd1d5;--skin-accent:#355c7d;--skin-radius:4px}
+.slide.active .skin-card{animation:featureRise .5s both}.slide.active .skin-card:nth-child(2){animation-delay:.08s}.slide.active .skin-card:nth-child(3){animation-delay:.16s}.slide.active .skin-card:nth-child(4){animation-delay:.24s}
+@keyframes featureRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.effect-grid{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:12px 14px}
+.effect-mini{height:142px;border:1px solid var(--line);border-radius:8px;background:#fff;display:grid;grid-template-columns:1fr 95px;align-items:center;padding:13px 16px;overflow:hidden}
+.effect-copy b{display:block;font-size:15px;margin-bottom:5px}.effect-copy span{font-size:12px;color:var(--muted);line-height:1.45}
+.effect-art{height:104px;display:grid;place-items:center;position:relative}
+.mini-wheel{width:72px;height:72px;border-radius:50%;border:2px solid #d5d9da;background:conic-gradient(#f7f8f8 0 60deg,#dfeeed 60deg 120deg,#f7f8f8 120deg 180deg,#e8edf5 180deg 240deg,#f7f8f8 240deg 300deg,#f3e9dc 300deg);position:relative}
+.mini-wheel::before{content:"";position:absolute;width:3px;height:30px;background:#2e6f6b;left:33px;top:8px;transform-origin:50% 28px;border-radius:3px}
+.mini-wheel::after{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:#2e6f6b;left:29px;top:30px}
+.slide.active .mini-wheel::before{animation:needleSpin 2.2s cubic-bezier(.18,.8,.22,1) both}
+@keyframes needleSpin{from{transform:rotate(0)}to{transform:rotate(1110deg)}}
+.mini-sticks{width:64px;height:60px;border:2px solid #bd8b54;border-top:0;border-radius:7px 7px 18px 18px;background:#e7bd80;position:relative;margin-top:22px}
+.mini-sticks i{position:absolute;width:6px;height:64px;bottom:30px;background:#f2d29c;border:1px solid #bd8b54;border-radius:3px;transform-origin:bottom}
+.mini-sticks i:nth-child(1){left:12px;transform:rotate(-10deg)}.mini-sticks i:nth-child(2){left:23px;transform:rotate(-3deg)}.mini-sticks i:nth-child(3){left:34px;transform:rotate(5deg)}.mini-sticks i:nth-child(4){left:45px;transform:rotate(11deg)}
+.slide.active .mini-sticks i:nth-child(3){animation:stickPick 2.1s ease-in-out both}
+@keyframes stickPick{0%,35%{transform:translateY(0) rotate(5deg)}55%{transform:translateY(-20px) rotate(2deg)}100%{transform:translateY(-10px) rotate(3deg);background:#fff0c7}}
+.mini-die{width:48px;height:48px;position:relative;transform-style:preserve-3d;transform:rotateX(-22deg) rotateY(32deg)}
+.mini-die i{position:absolute;inset:0;border:1px solid #c8cdd1;background:#fff;border-radius:8px;box-shadow:inset 0 0 12px rgba(80,90,96,.08)}
+.mini-die i:nth-child(1){transform:translateZ(24px);background:radial-gradient(circle at 50% 50%,#2f5f70 0 5px,transparent 5.5px),#fff}
+.mini-die i:nth-child(2){transform:rotateY(90deg) translateZ(24px);background:radial-gradient(circle at 28% 28%,#bd6f62 0 4px,transparent 4.5px),radial-gradient(circle at 72% 72%,#bd6f62 0 4px,transparent 4.5px),#f7f8f8}
+.mini-die i:nth-child(3){transform:rotateX(90deg) translateZ(24px);background:radial-gradient(circle at 25% 25%,#be9851 0 4px,transparent 4.5px),radial-gradient(circle at 75% 25%,#be9851 0 4px,transparent 4.5px),radial-gradient(circle at 50% 50%,#be9851 0 4px,transparent 4.5px),#f2f4f5}
+.slide.active .mini-die{animation:dieRoll 1.9s cubic-bezier(.2,.75,.2,1) both}
+@keyframes dieRoll{from{transform:rotateX(-22deg) rotateY(32deg)}60%{transform:rotateX(740deg) rotateY(590deg) scale(1.08)}to{transform:rotateX(338deg) rotateY(392deg)}}
+.mini-cards{width:88px;height:72px;position:relative}.mini-cards i{position:absolute;width:34px;height:52px;border-radius:5px;border:1px solid #9aaebd;background:repeating-linear-gradient(45deg,#6d8fa7 0 3px,#e7eef2 3px 6px);left:27px;top:12px;transform-origin:50% 100%}
+.mini-cards i:nth-child(1){transform:rotate(-30deg)}.mini-cards i:nth-child(2){transform:rotate(-18deg)}.mini-cards i:nth-child(3){transform:rotate(-6deg)}.mini-cards i:nth-child(4){transform:rotate(6deg)}.mini-cards i:nth-child(5){transform:rotate(18deg)}.mini-cards i:nth-child(6){transform:rotate(30deg)}
+.slide.active .mini-cards i:nth-child(4){animation:cardPick 2.1s ease both}
+@keyframes cardPick{0%,35%{transform:rotate(6deg)}65%{transform:translateY(-14px) rotate(4deg) rotateY(90deg)}100%{transform:translateY(-8px) rotate(0) rotateY(180deg);background:#fff2d9;border-color:#be8d48}}
+.mini-ticket{width:78px;height:82px;border:2px solid #657681;border-radius:7px;background:#e8ecee;overflow:hidden;position:relative;padding:7px}.mini-ticket::after{content:"";position:absolute;left:0;right:0;top:38px;height:2px;background:#657681}.ticket-strip{display:flex;flex-direction:column;gap:5px;transform:translateY(-2px)}.ticket-strip i{height:22px;background:#fff;border-left:5px solid #6b8ca4;box-shadow:0 0 0 1px #cfd7db}.slide.active .ticket-strip{animation:ticketRoll 2s cubic-bezier(.2,.75,.2,1) both}@keyframes ticketRoll{from{transform:translateY(-2px)}to{transform:translateY(-55px)}}
+.mini-ink{width:82px;height:82px;position:relative}.mini-ink::before{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#263f3c;left:35px;top:35px}.mini-ink i{position:absolute;width:34px;height:2px;background:#a6b7b2;left:41px;top:40px;transform-origin:left center}.mini-ink i::after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:#dfe7e4;right:-4px;top:-4px;border:1px solid #8ba19a}.mini-ink i:nth-child(1){transform:rotate(0)}.mini-ink i:nth-child(2){transform:rotate(60deg)}.mini-ink i:nth-child(3){transform:rotate(120deg)}.mini-ink i:nth-child(4){transform:rotate(180deg)}.mini-ink i:nth-child(5){transform:rotate(240deg)}.mini-ink i:nth-child(6){transform:rotate(300deg)}.slide.active .mini-ink i:nth-child(5){animation:inkPick 1.8s ease both}@keyframes inkPick{0%{background:#a6b7b2}60%,100%{background:#ba785e;height:4px}}
+
 /* ===== 页码指示器 ===== */
 .pager{
   position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
@@ -262,10 +321,10 @@ html,body{
   font-size:14px;color:var(--ink-soft);z-index:10;
 }
 .corner-logo .s{
-  width:28px;height:28px;border-radius:6px;background:var(--brand-seal);
-  display:grid;place-items:center;overflow:hidden;padding:3px;
+  width:28px;height:28px;border-radius:6px;background:#087e7d;
+  display:grid;place-items:center;overflow:hidden;padding:0;
 }
-.corner-logo .s svg{width:100%;height:100%}
+.corner-logo .s img{width:100%;height:100%;display:block;object-fit:cover}
 .corner-lang{
   position:absolute;top:22px;right:40px;z-index:10;
 }
@@ -288,7 +347,7 @@ html,body{
 
   <!-- 角标 -->
   <div class="corner-logo">
-    <div class="s"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5,7 C14,2 8,14 18,22 C14,28 18,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M10,5 C2,12 20,16 10,24 C6,30 14,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M16,6 C8,10 28,18 12,26 C10,30 16,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M24,6 C32,10 12,18 28,26 C30,30 24,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M30,5 C38,12 20,16 30,24 C34,30 26,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M35,7 C26,2 32,14 22,22 C26,28 22,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20,5 C20,14 20,24 20,35" stroke="rgba(244,245,239,0.95)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="20" cy="35" r="1.5" fill="rgba(244,245,239,0.95)"/></svg></div>
+    <div class="s"><img src="images/logo-nav.png" alt=""></div>
     <span>Decision Brief · 别纠结</span>
   </div>
   <div class="corner-lang">
@@ -302,18 +361,18 @@ html,body{
     <div class="slide" data-dur="4000">
       <div class="cover">
         <div class="cover-brand">
-          <div class="cover-seal"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5,7 C14,2 8,14 18,22 C14,28 18,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M10,5 C2,12 20,16 10,24 C6,30 14,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M16,6 C8,10 28,18 12,26 C10,30 16,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M24,6 C32,10 12,18 28,26 C30,30 24,33 20,35" stroke="rgba(244,245,239,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M30,5 C38,12 20,16 30,24 C34,30 26,33 20,35" stroke="rgba(244,245,239,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M35,7 C26,2 32,14 22,22 C26,28 22,33 20,35" stroke="rgba(244,245,239,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20,5 C20,14 20,24 20,35" stroke="rgba(244,245,239,0.95)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="20" cy="35" r="1.5" fill="rgba(244,245,239,0.95)"/></svg></div>
+          <div class="cover-seal"><img class="brand-logo-img" src="images/logo-nav.png" alt="Decision Brief logo"></div>
           <div class="cover-title">Decision Brief · 别纠结</div>
         </div>
         <h1 class="cover-h1">Compress your dilemma into one sentence first.</h1>
-        <p class="cover-sub">Type, speak, or snap a photo — you name the dilemma, I'll break the anxiety into weighable evidence, risks, and your next move.</p>
+        <p class="cover-sub">Write one sentence, speak it, or add a photo. Decision Brief separates the dilemma into evidence, risks, and a next step.</p>
         <div class="cover-seals">
           <div class="cover-seal-item cs-1" style="transition-delay:.1s"><div class="c">自</div><div class="l">Auto</div></div>
           <div class="cover-seal-item cs-2" style="transition-delay:.2s"><div class="c">理</div><div class="l">Rational</div></div>
           <div class="cover-seal-item cs-3" style="transition-delay:.3s"><div class="c">随</div><div class="l">Random</div></div>
           <div class="cover-seal-item cs-4" style="transition-delay:.4s"><div class="c">然</div><div class="l">Nature</div></div>
           <div class="cover-seal-item cs-5" style="transition-delay:.5s"><div class="c">问</div><div class="l">Dialogue</div></div>
-          <div class="cover-seal-item cs-6" style="transition-delay:.6s"><div class="c">局</div><div class="l">Fengshui</div></div>
+          <div class="cover-seal-item cs-6" style="transition-delay:.6s"><div class="c">局</div><div class="l">Culture</div></div>
         </div>
         <div class="cover-chips">
           <span class="cover-chip hot" style="transition-delay:.7s">⌨️ Type</span>
@@ -331,15 +390,15 @@ html,body{
         </div>
         <div class="shot-info">
           <div class="shot-tag">STEP 01</div>
-          <h2 class="shot-title">Six Seals<br>Six Perspectives</h2>
-          <p class="shot-desc">Cream paper backdrop, six single-letter seal buttons. Not sure which to pick? Let "Auto" decide — the system routes intelligently based on your wording.</p>
+          <h2 class="shot-title">Six ways in<br>Pick one and start</h2>
+          <p class="shot-desc">Use Random for a small choice and Rational for a serious one. Auto can pick a lens when you are unsure.</p>
           <div class="shot-points">
             <div class="shot-point"><span class="dot" style="background:var(--accent)"></span><span>A · Auto-detect the problem type</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--rational)"></span><span>R · Rational analysis for high-stakes calls</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--random)"></span><span>F · Leave it to fate for trivial matters</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>N · Nature's nudge to shift perspective</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>D · Dialogue to help you hear yourself</span></div>
-            <div class="shot-point"><span class="dot" style="background:var(--fengshui)"></span><span>G · Feng shui for a touch of ritual</span></div>
+            <div class="shot-point"><span class="dot" style="background:var(--fengshui)"></span><span>C · Traditional culture, for reference and fun</span></div>
           </div>
         </div>
       </div>
@@ -349,8 +408,8 @@ html,body{
     <div class="slide" data-dur="5500">
       <div class="composer-feature">
         <div class="composer-tag">STEP 02 · NEW</div>
-        <h2 class="composer-title">Rounded input box, three ways to speak your mind</h2>
-        <p class="composer-sub">Image upload on the left, auto-expanding text in the middle, mic and teal send button on the right. Room to breathe — comfortable typing, effortless voice, visual decisions too.</p>
+        <h2 class="composer-title">Text, voice, and images use the same input</h2>
+        <p class="composer-sub">Type the question, say it aloud, or attach a photo. All three routes produce the same decision brief.</p>
         <div class="composer-big" id="demoComposer">
           <div class="composer-preview-row" id="demoPrevRow">
             <div class="composer-thumb" id="demoThumb">IMG</div>
@@ -376,7 +435,43 @@ html,body{
       </div>
     </div>
 
-    <!-- Slide 3: 理性分析 -->
+    <!-- Slide 3: Four interface styles -->
+    <div class="slide" data-dur="4300">
+      <div class="feature-showcase">
+        <div class="feature-heading">
+          <span class="shot-tag">v0.9.0 · INTERFACE STYLES</span>
+          <h2>Four looks, switch whenever you like</h2>
+          <p>The features stay put. Choose the interface that feels easiest to read.</p>
+        </div>
+        <div class="skin-grid">
+          <div class="skin-card heritage"><div class="skin-preview"><div class="skin-side"><i></i><i></i><i></i><i></i></div><div class="skin-main"><strong>What needs a decision?</strong><div class="skin-modes"><i></i><i></i><i></i></div><div class="skin-brief"><i></i><i></i><i></i><i></i></div></div></div><div class="skin-label"><b>Original</b><span>Paper and seals</span></div></div>
+          <div class="skin-card workbench"><div class="skin-preview"><div class="skin-side"><i></i><i></i><i></i><i></i></div><div class="skin-main"><strong>What needs a decision?</strong><div class="skin-modes"><i></i><i></i><i></i></div><div class="skin-brief"><i></i><i></i><i></i><i></i></div></div></div><div class="skin-label"><b>Quiet workbench</b><span>Compact and clear</span></div></div>
+          <div class="skin-card journal"><div class="skin-preview"><div class="skin-side"><i></i><i></i><i></i><i></i></div><div class="skin-main"><strong>DECISION / 026</strong><div class="skin-modes"><i></i><i></i><i></i></div><div class="skin-brief"><i></i><i></i><i></i><i></i></div></div></div><div class="skin-label"><b>Decision journal</b><span>Black-and-white record</span></div></div>
+          <div class="skin-card console"><div class="skin-preview"><div class="skin-side"><i></i><i></i><i></i><i></i></div><div class="skin-main"><strong>Decision modules</strong><div class="skin-modes"><i></i><i></i><i></i></div><div class="skin-brief"><i></i><i></i><i></i><i></i></div></div></div><div class="skin-label"><b>Modular console</b><span>Panel layout</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Six random animations -->
+    <div class="slide" data-dur="4300">
+      <div class="feature-showcase">
+        <div class="feature-heading">
+          <span class="shot-tag">v0.9.0 · RANDOM CHOICE</span>
+          <h2>Random does not always mean a wheel</h2>
+          <p>One of six live animations is chosen for the question. Each result still maps to one of six options.</p>
+        </div>
+        <div class="effect-grid">
+          <div class="effect-mini"><div class="effect-copy"><b>Pointer dial</b><span>Spins, then stops on one option</span></div><div class="effect-art"><div class="mini-wheel"></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>Fortune sticks</b><span>Two shakes, then one stick rises</span></div><div class="effect-art"><div class="mini-sticks"><i></i><i></i><i></i><i></i></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>3D die</b><span>Rolls to a face from one to six</span></div><div class="effect-art"><div class="mini-die"><i></i><i></i><i></i></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>Six-card draw</b><span>Shuffles, selects, and flips a card</span></div><div class="effect-art"><div class="mini-cards"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>Ticket machine</b><span>Scrolls the list and stops on a result</span></div><div class="effect-art"><div class="mini-ticket"><div class="ticket-strip"><i></i><i></i><i></i><i></i></div></div></div></div>
+          <div class="effect-mini"><div class="effect-copy"><b>Ink paths</b><span>One of six routes lights up</span></div><div class="effect-art"><div class="mini-ink"><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Rational analysis -->
     <div class="slide" data-dur="4000">
       <div class="shot-layout">
         <div class="shot-visual">
@@ -384,7 +479,7 @@ html,body{
         </div>
         <div class="shot-info">
           <div class="shot-tag" style="color:var(--rational)">MODE · R</div>
-          <h2 class="shot-title">Rational Analysis<br>Benefits and risks at a glance</h2>
+          <h2 class="shot-title">Rational Analysis<br>Separate benefits from risks</h2>
           <p class="shot-desc">For high-regret decisions like quitting a job, buying a home, or big-ticket spending. Structured breakdown: benefits, risks, reversibility, and the smallest next step.</p>
           <div class="shot-points">
             <div class="shot-point"><span class="dot" style="background:var(--rational)"></span><span>Benefits list vs. risks list</span></div>
@@ -405,11 +500,11 @@ html,body{
         <div class="shot-info">
           <div class="shot-tag" style="color:var(--nature)">MODE · N</div>
           <h2 class="shot-title">Nature's Nudge<br>Shift angles, catch your breath</h2>
-          <p class="shot-desc">When emotions get stuck, reason doesn't help. Weaving in time, weather, and wind direction, nature gives you a signal to see things differently.</p>
+          <p class="shot-desc">When you are done calculating pros and cons, use time, weather, and wind direction to try another angle. You configure the weather source.</p>
           <div class="shot-points">
-            <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>AMap weather API key built-in</span></div>
+            <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>Add your own Amap key, Base URL, and city</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>Real-time weather + wind + Chinese hour</span></div>
-            <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>Not an oracle — an opening to breathe</span></div>
+            <div class="shot-point"><span class="dot" style="background:var(--nature)"></span><span>Simulated weather when Amap is not configured</span></div>
           </div>
         </div>
       </div>
@@ -424,9 +519,9 @@ html,body{
         <div class="shot-info">
           <div class="shot-tag" style="color:var(--dialogue)">MODE · D</div>
           <h2 class="shot-title">Dialogue Guide<br>Hear your own voice</h2>
-          <p class="shot-desc">You already have the answer — you just don't dare face it. Three to five rounds of probing questions help you hear the word you truly want to say.</p>
+          <p class="shot-desc">Three to five follow-up questions help you write down preferences and concerns that were still unclear.</p>
           <div class="shot-points">
-            <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>Multi-round probing, layer by layer</span></div>
+            <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>Questions and answers are stored together</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>Clarifies concerns, never answers for you</span></div>
             <div class="shot-point"><span class="dot" style="background:var(--dialogue)"></span><span>For when "I know, but I can't say it"</span></div>
           </div>
@@ -442,7 +537,7 @@ html,body{
         </div>
         <div class="shot-info">
           <div class="shot-tag">ARCHIVE</div>
-          <h2 class="shot-title">Auto Archive<br>Every decision leaves a trace</h2>
+          <h2 class="shot-title">Auto Archive<br>Come back to a decision later</h2>
           <p class="shot-desc">All decisions auto-saved locally; mark them "Done" or "Regretted" anytime. Desktop sidebar syncs in real time.</p>
           <div class="shot-points">
             <div class="shot-point"><span class="dot"></span><span>SQLite local persistence</span></div>
@@ -481,13 +576,13 @@ html,body{
         </div>
         <div class="shot-info">
           <div class="shot-tag">SETTINGS</div>
-          <h2 class="shot-title">TTS Read-Aloud · Themes<br>Works out of the box</h2>
-          <p class="shot-desc">Edge TTS built in for free, weather API key ready to go — just configure your own LLM key for real AI analysis.</p>
+          <h2 class="shot-title">Voice, language, and APIs<br>Live in Settings</h2>
+          <p class="shot-desc">Edge TTS needs no key. Add your own LLM and Amap weather details when you need them.</p>
           <div class="shot-points">
             <div class="shot-point"><span class="dot"></span><span>Edge TTS free, no key needed</span></div>
             <div class="shot-point"><span class="dot"></span><span>Light / Dark / Follow system</span></div>
             <div class="shot-point"><span class="dot"></span><span>6-language internationalization</span></div>
-            <div class="shot-point"><span class="dot"></span><span>No key? Mock mode for preview</span></div>
+            <div class="shot-point"><span class="dot"></span><span>No Amap API? Nature uses simulated weather</span></div>
           </div>
         </div>
       </div>
@@ -496,9 +591,9 @@ html,body{
     <!-- Slide 9: 结尾 CTA -->
     <div class="slide" data-dur="4500">
       <div class="cover">
-        <div class="cover-seal" style="background:var(--accent);width:64px;height:64px;border-radius:12px;padding:8px"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5,7 C14,2 8,14 18,22 C14,28 18,33 20,35" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M10,5 C2,12 20,16 10,24 C6,30 14,33 20,35" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M16,6 C8,10 28,18 12,26 C10,30 16,33 20,35" stroke="rgba(255,255,255,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M24,6 C32,10 12,18 28,26 C30,30 24,33 20,35" stroke="rgba(255,255,255,0.55)" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M30,5 C38,12 20,16 30,24 C34,30 26,33 20,35" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M35,7 C26,2 32,14 22,22 C26,28 22,33 20,35" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M20,5 C20,14 20,24 20,35" stroke="rgba(255,255,255,1.0)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="20" cy="35" r="1.5" fill="rgba(255,255,255,1.0)"/></svg></div>
+        <div class="cover-seal" style="width:64px;height:64px;border-radius:12px"><img class="brand-logo-img" src="images/logo-nav.png" alt="Decision Brief logo"></div>
         <h1 class="cover-h1" style="font-size:56px">Stop overthinking decisions.</h1>
-        <p class="cover-sub">Up and running in three minutes, zero configuration.<br>No key? You can still explore the full UI; weather service is built-in.</p>
+        <p class="cover-sub">Run it locally and keep the archive on your own computer.<br>Add LLM and Amap details only when needed; Demo and simulated weather are available without them.</p>
         <div style="display:flex;gap:14px;margin-top:12px">
           <div style="padding:14px 28px;border-radius:12px;background:var(--accent);color:#fff;font-size:15px;font-weight:500;box-shadow:0 8px 20px -8px rgba(49,125,120,.5)">★ View on GitHub</div>
           <div style="padding:14px 28px;border-radius:12px;border:1px solid var(--line);font-size:15px;font-weight:500;color:var(--ink);font-family:'SF Mono',Menlo,Consolas,monospace">pip install -e ".[dev]"</div>

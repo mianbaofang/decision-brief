@@ -35,6 +35,7 @@ def _request_overrides(req: ChatRequest) -> dict:
         "llm_model": req.llmModel,
         "llm_base_url": req.llmBaseUrl,
         "weather_key": weather_key,
+        "weather_base_url": req.weatherBaseUrl,
         "weather_appsecret": req.weatherAppsecret,
         "weather_city": req.weatherCity,
     }

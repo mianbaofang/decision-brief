@@ -7,7 +7,7 @@
   { type, time, season, weather, sun, wind, source, isReal, signal, poem, suggestion }
 """
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from config import get_effective_config, has_llm_config
 from services.llm_service import NoApiKeyError, call_openai_llm
@@ -28,35 +28,106 @@ _HUMANIZE = (
 
 
 def _build_nature_prompt(question: str, w: Dict[str, Any]) -> str:
+    source = str(w.get("source") or "天气服务")
+    city = str(w.get("city") or "未提供城市")
     source_note = (
-        f"数据源：{w['source']}，城市：{w['city']}，更新时间：{w.get('updateTime') or '实时接口返回'}"
+        f"数据源：{source}，城市：{city}，更新时间：{w.get('updateTime') or '实时接口返回'}"
         if w.get("isReal")
-        else f"数据源：{w['source']}（天气接口未配置或不可用时的降级数据）"
+        else f"数据源：{source}（天气接口未配置或不可用时的降级数据）"
     )
+    alerts = _as_text_list(w.get("alarms") or w.get("alerts") or w.get("warnings"))
+    trend = _weather_trend_text(w)
+    living = _as_text_list(w.get("life_indices") or w.get("livingAdvice") or w.get("tips"))
     lines = [
-        f"当前时间：{w.get('date','')} {w['time']}".strip(),
-        f"季节：{w['season']}",
-        f"天气：{w['weather']}",
+        f"当前时间：{w.get('date','')} {w.get('time', '')}".strip(),
+        f"季节：{w.get('season', '')}",
+        f"天气：{w.get('weather', '')}",
         f"气温：{w['temperature']}℃" if w.get("temperature") else "",
-        f"风向风力：{w['wind']}",
+        f"风向风力：{w.get('wind', '')}",
         f"湿度：{w['humidity']}" if w.get("humidity") else "",
         f"空气质量：{w['air']}" if w.get("air") else "",
-        f"天光信号：{w['sun']}",
+        f"预警：{'；'.join(alerts)}" if alerts else "",
+        f"天气趋势：{trend}" if trend else "",
+        f"生活建议：{'；'.join(living)}" if living else "",
+        f"天光信号：{w.get('sun', '')}",
+        f"月相：{w.get('moonPhase', '')}" if w.get("moonPhase") else "",
         source_note,
     ]
     weather_line = "，".join(x for x in lines if x)
+    time = str(w.get("time") or "此刻")
+    season = str(w.get("season") or "当下")
+    weather_name = str(w.get("weather") or "天气变化")
+    wind = str(w.get("wind") or "微风")
     return (
         f"{_HUMANIZE}\n\n"
         f"你是自然决策师，像个看惯了山水的朋友。{weather_line}。"
         f"针对问题：\"{question}\"，结合此刻真实或降级的自然条件，用自然意象给点启示。\n"
+        "有天气预警时，建议先考虑安全和出行；不要编造没有提供的环境信息。\n"
         "输出严格 JSON：\n"
-        '{"type":"nature","time":"' + w['time'] + '","season":"' + w['season'] + '",'
-        '"weather":"' + w['weather'] + '","sun":"' + w.get('sun', '') + '",'
-        '"wind":"' + w['wind'] + '","source":"' + w['source'] + '",'
+        '{"type":"nature","time":"' + time + '","season":"' + season + '",'
+        '"weather":"' + weather_name + '","sun":"' + str(w.get('sun', '')) + '",'
+        '"wind":"' + wind + '","source":"' + source + '",'
         '"isReal":' + ("true" if w.get("isReal") else "false") + ","
         '"signal":"自然信号名","poem":"结合自然条件的诗意解读2-3句，别太文绉绉",'
         '"suggestion":"基于自然逻辑的建议一句话，像朋友会说的话"}'
     )
+
+
+def _as_text_list(value: Any) -> List[str]:
+    if isinstance(value, str):
+        return [value.strip()] if value.strip() else []
+    if isinstance(value, dict):
+        fields = ("name", "level", "desc", "title", "text", "description", "value")
+        items = [str(value[key]).strip() for key in fields if str(value.get(key) or "").strip()]
+        ids = value.get("ids")
+        if isinstance(ids, list):
+            for item in ids:
+                items.extend(_as_text_list(item))
+        return items
+    if isinstance(value, list):
+        items: List[str] = []
+        for item in value:
+            items.extend(_as_text_list(item))
+        return items
+    return [str(value).strip()] if value is not None and str(value).strip() else []
+
+
+def _weather_trend_text(weather: Dict[str, Any]) -> str:
+    direct = _as_text_list(weather.get("weatherTrend") or weather.get("trend"))
+    if direct:
+        return "；".join(direct[:2])
+    forecast = weather.get("forecast_1h") or weather.get("forecast_24h") or []
+    if not isinstance(forecast, list):
+        return ""
+    items = []
+    for item in forecast[:3]:
+        if not isinstance(item, dict):
+            continue
+        info = item.get("infos") or item.get("info") or {}
+        info = info if isinstance(info, dict) else {}
+        time = item.get("hour") or item.get("time") or item.get("forecast_time")
+        condition = item.get("weather") or info.get("weather") or item.get("text") or info.get("text")
+        temperature = item.get("temperature") or info.get("temperature") or item.get("temp") or info.get("temp")
+        parts = [time, condition, f"{temperature}℃" if temperature not in (None, "") else ""]
+        text = " ".join(str(part).strip() for part in parts if part)
+        if text:
+            items.append(text)
+    return "；".join(items)
+
+
+def _with_weather_evidence(result: Dict[str, Any], weather: Dict[str, Any]) -> Dict[str, Any]:
+    """把接口数据回填到结果中；LLM 只负责信号、解读和建议。"""
+    signals = build_signals(weather) if build_signals else None
+    for key in (
+        "source", "isReal", "city", "weather", "temperature", "humidity", "wind", "air",
+        "time", "season", "sun", "moonPhase", "updateTime", "weatherStatus", "weatherStatusText",
+        "alarms", "forecast_1h", "forecast_24h", "weatherTrend", "life_indices",
+    ):
+        default = [] if key in {"alarms", "forecast_1h", "forecast_24h"} else ({} if key == "life_indices" else "")
+        result[key] = weather.get(key, default)
+    result["signals"] = weather.get("signals") or signals
+    result["type"] = "nature"
+    return result
 
 
 def _mock_nature_brief(question: str, w: Dict[str, Any], language: str = "zh-CN") -> Dict[str, Any]:
@@ -133,7 +204,7 @@ def _mock_nature_brief(question: str, w: Dict[str, Any], language: str = "zh-CN"
         if any(k in q for k in keys):
             signal, poem, suggestion = sig, po, sug
             break
-    return {
+    return _with_weather_evidence({
         "type": "nature",
         "time": time,
         "season": season,
@@ -145,7 +216,7 @@ def _mock_nature_brief(question: str, w: Dict[str, Any], language: str = "zh-CN"
         "signal": signal,
         "poem": poem,
         "suggestion": suggestion,
-    }
+    }, w)
 
 
 def generate_nature_brief(question: str, config: Optional[Dict[str, Any]] = None,
@@ -161,16 +232,7 @@ def generate_nature_brief(question: str, config: Optional[Dict[str, Any]] = None
     if has_llm_config(config):
         try:
             result = call_openai_llm(_build_nature_prompt(question, weather), config)
-            # 用天气真实值回填，避免 LLM 编造
-            result["source"] = result.get("source") or weather["source"]
-            result["isReal"] = bool(result.get("isReal", weather["isReal"]))
-            result["weather"] = result.get("weather") or weather["weather"]
-            result["wind"] = result.get("wind") or weather["wind"]
-            result["time"] = result.get("time") or weather["time"]
-            result["season"] = result.get("season") or weather["season"]
-            result["sun"] = result.get("sun") or weather.get("sun", "")
-            result["type"] = "nature"
-            return result
+            return _with_weather_evidence(result, weather)
         except Exception as e:
             print(f"[nature] LLM 调用失败: {type(e).__name__}")
             if not allow_mock:

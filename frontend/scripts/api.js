@@ -147,7 +147,7 @@ const MODES = (() => {
   const REGISTRY = [
     { id: 'auto',     char: '自', tone: 'auto',     color: 'var(--aqua)',     hex: '#317d78', nameKey: 'mode.auto',     descKey: 'mode.auto.desc' },
     { id: 'rational', char: '理', tone: 'rational', color: 'var(--lapis)',    hex: '#365385', nameKey: 'mode.rational', descKey: 'mode.rational.desc' },
-    { id: 'random',   char: '随', tone: 'random',   color: 'var(--brass)',    hex: '#9b7636', nameKey: 'mode.random',   descKey: 'mode.random.desc' },
+    { id: 'random',   char: '随', tone: 'random',   color: 'var(--random-head)', hex: '#317d78', nameKey: 'mode.random', descKey: 'mode.random.desc' },
     { id: 'nature',   char: '然', tone: 'nature',   color: 'var(--moss)',     hex: '#486a55', nameKey: 'mode.nature',   descKey: 'mode.nature.desc' },
     { id: 'dialogue', char: '问', tone: 'dialogue', color: 'var(--plum)',     hex: '#69526f', nameKey: 'mode.dialogue', descKey: 'mode.dialogue.desc' },
     { id: 'fengshui', char: '局', tone: 'fengshui', color: 'var(--cinnabar)', hex: '#b45a42', nameKey: 'mode.fengshui', descKey: 'mode.fengshui.desc' }

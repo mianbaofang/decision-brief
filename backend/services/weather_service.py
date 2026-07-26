@@ -1,7 +1,7 @@
 """天气服务（高德开放平台）。
 
 使用高德天气查询 API：
-  - 接口：https://restapi.amap.com/v3/weather/weatherInfo
+  - 接口：由用户配置 weather_base_url
   - 文档：https://lbs.amap.com/api/webservice/guide/api/weatherinfo
   - 配额：个人开发者每日 10 万次免费
   - 鉴权：用户自配的高德 Key（weather_key）
@@ -9,7 +9,7 @@
 未配置 weather_key 或调用失败时返回 mock 自然数据，与之前和风版本一致。
 返回结构保持不变，便于上层无感切换：
   { isReal, source, city, weather, temperature, humidity, wind,
-    air, time, season, sun, updateTime }
+    air, time, season, sun, moonPhase, updateTime, forecast_24h }
 """
 
 import random
@@ -19,9 +19,6 @@ from typing import Any, Dict, Optional
 import httpx
 
 from config import get_effective_config, has_weather_config
-
-# 高德天气查询 API
-AMAP_WEATHER_ENDPOINT = "https://restapi.amap.com/v3/weather/weatherInfo"
 
 _TIMEOUT = 8.0
 
@@ -69,11 +66,33 @@ def _get_sun(now: datetime, weather: str) -> str:
     return "月明星稀"
 
 
+def _get_moon_phase(now: datetime) -> str:
+    """根据朔望月周期估算当前月相。"""
+    reference = datetime(2000, 1, 6, 18, 14)
+    day_in_cycle = ((now - reference).total_seconds() / 86400) % 29.53058867
+    if day_in_cycle < 1:
+        return "新月"
+    if day_in_cycle < 7:
+        return "娥眉月"
+    if day_in_cycle < 10:
+        return "上弦月"
+    if day_in_cycle < 14:
+        return "盈凸月"
+    if day_in_cycle < 17:
+        return "满月"
+    if day_in_cycle < 21:
+        return "亏凸月"
+    if day_in_cycle < 24:
+        return "下弦月"
+    return "残月"
+
+
 def _base_context(now: datetime) -> Dict[str, Any]:
     return {
         "date": now.strftime("%Y-%m-%d"),
         "time": _get_period(now),
         "season": _get_season(now),
+        "moonPhase": _get_moon_phase(now),
     }
 
 
@@ -131,6 +150,37 @@ def _parse_amap_response(data: Any) -> Optional[Dict[str, Any]]:
     }
 
 
+def _parse_amap_forecast(data: Any) -> list[Dict[str, str]]:
+    """把高德未来天气转换成自然模式可直接展示的短列表。"""
+    if not isinstance(data, dict) or str(data.get("status", "0")) != "1":
+        return []
+    forecasts = data.get("forecasts") or []
+    if not forecasts or not isinstance(forecasts, list):
+        return []
+    casts = forecasts[0].get("casts") or [] if isinstance(forecasts[0], dict) else []
+    items = []
+    for cast in casts[:3]:
+        if not isinstance(cast, dict):
+            continue
+        day_weather = str(cast.get("dayweather") or "")
+        night_weather = str(cast.get("nightweather") or "")
+        weather = day_weather if not night_weather or day_weather == night_weather else f"{day_weather}转{night_weather}"
+        items.append({
+            "time": str(cast.get("date") or ""),
+            "weather": weather,
+            "temperature": str(cast.get("daytemp") or cast.get("nighttemp") or ""),
+        })
+    return items
+
+
+def _weather_trend(forecast: list[Dict[str, str]]) -> str:
+    return "；".join(
+        " · ".join(part for part in (item.get("time", ""), item.get("weather", ""),
+                                      f"{item.get('temperature')}℃" if item.get("temperature") else "") if part)
+        for item in forecast[:2]
+    )
+
+
 def _mock_weather(now: datetime, language: str = "zh-CN") -> Dict[str, Any]:
     """未配置或调用失败时的降级自然数据。"""
     if language == "en":
@@ -162,7 +212,15 @@ def _mock_weather(now: datetime, language: str = "zh-CN") -> Dict[str, Any]:
         "time": _get_period(now),
         "season": _get_season(now),
         "sun": _get_sun(now, c["weather"]),
+        "moonPhase": _get_moon_phase(now),
         "updateTime": "",
+        "weatherStatus": "not_configured",
+        "weatherStatusText": "未配置天气 Key" if language != "en" else "Weather key not configured",
+        "alarms": [],
+        "forecast_1h": [],
+        "forecast_24h": [],
+        "weatherTrend": "",
+        "life_indices": {},
     }
 
 
@@ -180,6 +238,7 @@ def get_current_weather(config: Optional[Dict[str, Any]] = None,
     if has_weather_config(config):
         # 高德 Key
         key = config.get("weather_key") or config.get("weather_appsecret")
+        endpoint = config.get("weather_base_url")
         city = config.get("weather_city") or "北京"
         params = {
             "key": key,
@@ -187,10 +246,18 @@ def get_current_weather(config: Optional[Dict[str, Any]] = None,
             "extensions": "base",  # base=实况, all=预报
         }
         try:
+            forecast = []
             with httpx.Client(timeout=_TIMEOUT) as client:
-                resp = client.get(AMAP_WEATHER_ENDPOINT, params=params)
+                resp = client.get(endpoint, params=params)
                 resp.raise_for_status()
-            parsed = _parse_amap_response(resp.json())
+                parsed = _parse_amap_response(resp.json())
+                if parsed:
+                    try:
+                        forecast_resp = client.get(endpoint, params={**params, "extensions": "all"})
+                        forecast_resp.raise_for_status()
+                        forecast = _parse_amap_forecast(forecast_resp.json())
+                    except Exception as forecast_error:
+                        print(f"[weather] 高德预报调用失败: {type(forecast_error).__name__}")
             if parsed:
                 weather_str = parsed["weather"]
                 return {
@@ -204,8 +271,17 @@ def get_current_weather(config: Optional[Dict[str, Any]] = None,
                     "air": parsed["air"],
                     "time": base["time"],
                     "season": base["season"],
+                    "date": base["date"],
                     "sun": _get_sun(now, weather_str),
+                    "moonPhase": base["moonPhase"],
                     "updateTime": parsed["updateTime"],
+                    "weatherStatus": "ok",
+                    "weatherStatusText": "实时天气已更新",
+                    "alarms": [],
+                    "forecast_1h": [],
+                    "forecast_24h": forecast,
+                    "weatherTrend": _weather_trend(forecast),
+                    "life_indices": {},
                 }
         except Exception as e:
             # 不打印 Key；仅记录降级原因

@@ -100,7 +100,7 @@
   flex-shrink: 0;
 }
 .pill[data-mode="rational"] { background: var(--lapis); }
-.pill[data-mode="random"]   { background: var(--brass); }
+.pill[data-mode="random"]   { background: var(--random-head); }
 .pill[data-mode="nature"]   { background: var(--moss); }
 .pill[data-mode="dialogue"] { background: var(--plum); }
 .pill[data-mode="fengshui"] { background: var(--cinnabar); }

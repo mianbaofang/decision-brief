@@ -19,8 +19,8 @@ MODES: List[ModeMeta] = [
              description="顺应直觉与自然倾向做选择"),
     ModeMeta(id="dialogue", name="对话", icon="问", color="#69526f",
              description="通过对话提问厘清真实需求"),
-    ModeMeta(id="fengshui", name="风水", icon="局", color="#b45a42",
-             description="以风水格局视角辅助决策"),
+    ModeMeta(id="fengshui", name="国学", icon="局", color="#b45a42",
+             description="从传统文化里找一个处事角度"),
 ]
 
 # 五条快捷问题（首页快捷入口）

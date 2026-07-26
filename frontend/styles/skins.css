@@ -1,0 +1,386 @@
+/* Visual skins layer. Theme mode still controls light or dark colors. */
+:root {
+  --random-head: #1d1d1f;
+  --random-ink: #007aff;
+  --random-pop: #ff3b30;
+  --random-alt: #5856d6;
+  --random-vessel: #0a6fd8;
+  --random-bamboo: #c6922f;
+  --random-gold: #ffcc00;
+  --random-paper: #ffffff;
+  --random-card-1: #30b0c7;
+  --random-card-2: #007aff;
+  --random-card-3: #ff3b30;
+  --random-card-4: #af52de;
+  --random-card-5: #ff9500;
+  --random-card-6: #34c759;
+  --random-die-top: #ffcc00;
+  --random-die-left: #30b0c7;
+  --random-die-right: #007aff;
+  --random-wash: rgba(0, 122, 255, 0.08);
+  --random-line: rgba(0, 122, 255, 0.24);
+}
+
+html[data-skin="heritage"][data-theme="dark"] {
+  --random-head: #315f56;
+  --random-ink: #78cfbd;
+  --random-pop: #ef8d77;
+  --random-alt: #89afe2;
+  --random-vessel: #315f56;
+  --random-card-1: #5caa9c;
+  --random-card-2: #7f9fca;
+  --random-card-3: #ba7489;
+  --random-card-4: #a184bd;
+  --random-card-5: #c89c59;
+  --random-card-6: #6f9eb7;
+  --random-die-top: #e0eee7;
+  --random-die-left: #4d9288;
+  --random-die-right: #739cc1;
+  --random-wash: rgba(120, 207, 189, 0.14);
+  --random-line: rgba(120, 207, 189, 0.4);
+}
+
+html[data-skin="workbench"][data-theme="light"] {
+  --paper: #f2f6f4;
+  --paper-2: #e5eeea;
+  --paper-deep: #f7faf8;
+  --paper-deeper: #dfe9e4;
+  --white: #ffffff;
+  --ink: #18231f;
+  --ink-soft: #64736c;
+  --ink-faint: #8a9790;
+  --line: rgba(24, 35, 31, 0.12);
+  --border-soft: #d6e0da;
+  --aqua: #18745a;
+  --lapis: #3b6170;
+  --brass: #b47a31;
+  --moss: #4d7e55;
+  --plum: #7b5d72;
+  --cinnabar: #b75b49;
+  --brand-seal: #08745d;
+  --font-display: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --shadow-sm: 0 1px 3px rgba(24, 35, 31, 0.06);
+  --shadow-md: 0 7px 18px rgba(24, 35, 31, 0.07);
+  --shadow-lg: 0 18px 36px rgba(24, 35, 31, 0.08);
+  --random-head: var(--brand-seal);
+  --random-ink: var(--aqua);
+  --random-pop: var(--cinnabar);
+  --random-alt: var(--lapis);
+  --random-vessel: var(--brand-seal);
+  --random-wash: rgba(24, 116, 90, 0.12);
+  --random-line: rgba(24, 116, 90, 0.36);
+}
+
+html[data-skin="workbench"][data-theme="dark"] {
+  --paper: #18211e;
+  --paper-2: #212d28;
+  --paper-deep: #1d2924;
+  --paper-deeper: #26362f;
+  --white: #212d28;
+  --ink: #e3eee8;
+  --ink-soft: #b1c0b8;
+  --ink-faint: #82948a;
+  --line: rgba(227, 238, 232, 0.13);
+  --border-soft: rgba(227, 238, 232, 0.14);
+  --aqua: #68c6a0;
+  --lapis: #8fbdc6;
+  --brass: #dfb96f;
+  --moss: #8fc996;
+  --plum: #d1a8c6;
+  --cinnabar: #e49a87;
+  --brand-seal: #1b9677;
+  --font-display: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --random-head: var(--brand-seal);
+  --random-ink: var(--aqua);
+  --random-pop: var(--cinnabar);
+  --random-alt: var(--lapis);
+  --random-vessel: var(--brand-seal);
+  --random-wash: rgba(104, 198, 160, 0.14);
+  --random-line: rgba(104, 198, 160, 0.4);
+}
+
+html[data-skin="journal"][data-theme="light"] {
+  --paper: #f8f6ef;
+  --paper-2: #efecdf;
+  --paper-deep: #f8f6ef;
+  --paper-deeper: #ebe6d7;
+  --white: #fffdf7;
+  --ink: #171915;
+  --ink-soft: #5f655e;
+  --ink-faint: #868a80;
+  --line: rgba(23, 25, 21, 0.18);
+  --border-soft: #cfc9ba;
+  --aqua: #426856;
+  --lapis: #3f596c;
+  --brass: #aa7a36;
+  --moss: #49734e;
+  --plum: #72576d;
+  --cinnabar: #a94e3e;
+  --brand-seal: #254c3d;
+  --font-display: "Songti SC", "Noto Serif SC", "STSong", serif;
+  --font-text: "Songti SC", "Noto Serif SC", "STSong", serif;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --random-head: var(--brand-seal);
+  --random-ink: var(--aqua);
+  --random-pop: var(--cinnabar);
+  --random-alt: var(--lapis);
+  --random-vessel: var(--brand-seal);
+  --random-wash: rgba(66, 104, 86, 0.1);
+  --random-line: rgba(66, 104, 86, 0.38);
+}
+
+html[data-skin="journal"][data-theme="dark"] {
+  --paper: #1e201b;
+  --paper-2: #282a23;
+  --paper-deep: #20221c;
+  --paper-deeper: #2d3027;
+  --white: #282a23;
+  --ink: #eee9dc;
+  --ink-soft: #beb9ab;
+  --ink-faint: #928e84;
+  --line: rgba(238, 233, 220, 0.16);
+  --border-soft: rgba(238, 233, 220, 0.15);
+  --aqua: #84b49a;
+  --lapis: #9dbbd1;
+  --brass: #d8b376;
+  --moss: #9bc89c;
+  --plum: #c7a8c0;
+  --cinnabar: #e29a8b;
+  --brand-seal: #4c8069;
+  --font-display: "Songti SC", "Noto Serif SC", "STSong", serif;
+  --font-text: "Songti SC", "Noto Serif SC", "STSong", serif;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --random-head: var(--brand-seal);
+  --random-ink: var(--aqua);
+  --random-pop: var(--cinnabar);
+  --random-alt: var(--lapis);
+  --random-vessel: var(--brand-seal);
+  --random-wash: rgba(132, 180, 154, 0.13);
+  --random-line: rgba(132, 180, 154, 0.4);
+}
+
+html[data-skin="console"][data-theme="light"] {
+  --paper: #edf2f0;
+  --paper-2: #e1ebe7;
+  --paper-deep: #ffffff;
+  --paper-deeper: #e0ebe6;
+  --white: #ffffff;
+  --ink: #172420;
+  --ink-soft: #607069;
+  --ink-faint: #7c8b84;
+  --line: rgba(23, 36, 32, 0.13);
+  --border-soft: #d3ded8;
+  --aqua: #0d7564;
+  --lapis: #356d7e;
+  --brass: #ae7b28;
+  --moss: #347a52;
+  --plum: #745c91;
+  --cinnabar: #b65345;
+  --brand-seal: #18372e;
+  --font-display: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --shadow-sm: 0 1px 2px rgba(23, 36, 32, 0.05);
+  --shadow-md: 0 5px 14px rgba(23, 36, 32, 0.06);
+  --shadow-lg: 0 10px 24px rgba(23, 36, 32, 0.06);
+  --random-head: var(--brand-seal);
+  --random-ink: var(--aqua);
+  --random-pop: var(--cinnabar);
+  --random-alt: var(--lapis);
+  --random-vessel: var(--brand-seal);
+  --random-wash: rgba(13, 117, 100, 0.11);
+  --random-line: rgba(13, 117, 100, 0.36);
+}
+
+html[data-skin="console"][data-theme="dark"] {
+  --paper: #17221f;
+  --paper-2: #21322c;
+  --paper-deep: #1b2b25;
+  --paper-deeper: #294037;
+  --white: #21322c;
+  --ink: #e7f0eb;
+  --ink-soft: #b3c1ba;
+  --ink-faint: #83938b;
+  --line: rgba(231, 240, 235, 0.13);
+  --border-soft: rgba(231, 240, 235, 0.14);
+  --aqua: #65cab8;
+  --lapis: #8bc6d6;
+  --brass: #dfbc71;
+  --moss: #87d0a1;
+  --plum: #c4acd8;
+  --cinnabar: #e99a89;
+  --brand-seal: #276e5d;
+  --font-display: Inter, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --random-head: var(--brand-seal);
+  --random-ink: var(--aqua);
+  --random-pop: var(--cinnabar);
+  --random-alt: var(--lapis);
+  --random-vessel: var(--brand-seal);
+  --random-wash: rgba(101, 202, 184, 0.13);
+  --random-line: rgba(101, 202, 184, 0.4);
+}
+
+/* Random mode uses one deliberate palette across skins. */
+html[data-skin][data-theme="light"] {
+  --random-head: #1d1d1f;
+  --random-ink: #007aff;
+  --random-pop: #ff3b30;
+  --random-alt: #5856d6;
+  --random-vessel: #0a6fd8;
+  --random-bamboo: #c6922f;
+  --random-gold: #ffcc00;
+  --random-paper: #ffffff;
+  --random-card-1: #30b0c7;
+  --random-card-2: #007aff;
+  --random-card-3: #ff3b30;
+  --random-card-4: #af52de;
+  --random-card-5: #ff9500;
+  --random-card-6: #34c759;
+  --random-die-top: #ffcc00;
+  --random-die-left: #30b0c7;
+  --random-die-right: #007aff;
+  --random-wash: rgba(0, 122, 255, 0.08);
+  --random-line: rgba(0, 122, 255, 0.24);
+}
+
+html[data-skin][data-theme="dark"] {
+  --random-head: #000000;
+  --random-ink: #0a84ff;
+  --random-pop: #ff453a;
+  --random-alt: #5e5ce6;
+  --random-vessel: #0a84ff;
+  --random-bamboo: #d5a33a;
+  --random-gold: #ffd60a;
+  --random-paper: #252527;
+  --random-card-1: #64d2ff;
+  --random-card-2: #0a84ff;
+  --random-card-3: #ff453a;
+  --random-card-4: #bf5af2;
+  --random-card-5: #ff9f0a;
+  --random-card-6: #30d158;
+  --random-die-top: #ffd60a;
+  --random-die-left: #64d2ff;
+  --random-die-right: #0a84ff;
+  --random-wash: rgba(10, 132, 255, 0.13);
+  --random-line: rgba(10, 132, 255, 0.34);
+}
+
+html[data-skin="workbench"] {
+  --side-w: 246px;
+  --side-w-narrow: 210px;
+  --topbar-h: 42px;
+}
+html[data-skin="workbench"] .sidebar-head { padding: 18px 16px 13px; }
+html[data-skin="workbench"] .scroll-area { padding: 30px 40px; gap: 18px; }
+html[data-skin="workbench"] .hero-title { font-size: 23px; }
+html[data-skin="workbench"] .mode-grid {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  gap: 2px;
+  padding: 4px;
+  overflow-x: auto;
+  border-radius: 9px;
+  background: var(--paper-2);
+}
+html[data-skin="workbench"] .mode-card {
+  flex: 0 0 auto;
+  min-width: 64px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+}
+html[data-skin="workbench"] .mode-card .mode-seal { display: none; }
+html[data-skin="workbench"] .mode-card.active {
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-sm);
+}
+html[data-skin="workbench"] .mode-card.active > span { opacity: 1; font-weight: 600; }
+html[data-skin="workbench"] .brief { border-radius: 8px; }
+html[data-skin="workbench"] .composer { border-radius: 8px; }
+html[data-skin="workbench"] .drawer { border-radius: 8px 0 0 8px; }
+
+html[data-skin="journal"] .topbar { border-bottom: 2px solid var(--ink); }
+html[data-skin="journal"] .sidebar-head { border-bottom: 2px solid var(--ink); }
+html[data-skin="journal"] .scroll-area { padding: 28px 36px; gap: 18px; }
+html[data-skin="journal"] .hero {
+  max-width: 920px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line-strong);
+}
+html[data-skin="journal"] .hero-title { font-size: 28px; line-height: 1.25; }
+html[data-skin="journal"] .mode-grid {
+  max-width: 760px;
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+html[data-skin="journal"] .nav-item,
+html[data-skin="journal"] .mode-card,
+html[data-skin="journal"] .brief,
+html[data-skin="journal"] .drawer,
+html[data-skin="journal"] .composer { border-radius: 5px; }
+html[data-skin="journal"] .mode-card {
+  min-height: 42px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: transparent;
+}
+html[data-skin="journal"] .mode-card:last-child { border-right: 0; }
+html[data-skin="journal"] .mode-card.active { background: var(--paper-2); }
+html[data-skin="journal"] .brief-head { background: var(--ink); }
+html[data-skin="journal"] .sidebar-logo { letter-spacing: 0; }
+html[data-skin="journal"] .composer { box-shadow: none; }
+
+html[data-skin="console"] {
+  --side-w: 88px;
+  --side-w-narrow: 88px;
+  --topbar-h: 36px;
+}
+html[data-skin="console"] .topbar { border-bottom: 0; }
+html[data-skin="console"] .scroll-area { padding: 22px 36px; }
+html[data-skin="console"] .sidebar-head { padding: 18px 0 14px; }
+html[data-skin="console"] .sidebar-logo { justify-content: center; margin: 0; }
+html[data-skin="console"] .sidebar-logo-seal { width: 40px; height: 40px; border-radius: 8px; }
+html[data-skin="console"] .mode-card,
+html[data-skin="console"] .brief,
+html[data-skin="console"] .composer,
+html[data-skin="console"] .drawer { border-radius: 8px; }
+html[data-skin="console"] .scroll-area { gap: 16px; }
+html[data-skin="console"] .brief-head { background: var(--ink); }
+@media (min-width: 768px) {
+  html[data-skin="console"] .sidebar-logo > span,
+  html[data-skin="console"] .sidebar-sub,
+  html[data-skin="console"] .sidebar-title,
+  html[data-skin="console"] .sidebar-recent,
+  html[data-skin="console"] .nav-item > span:last-child,
+  html[data-skin="console"] .sidebar-foot > span:first-child { display: none; }
+  html[data-skin="console"] .sidebar-nav { align-items: center; gap: 8px; padding: 14px 0; }
+  html[data-skin="console"] .nav-item {
+    width: 48px;
+    height: 48px;
+    min-height: 48px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  html[data-skin="console"] .nav-item.active::before { left: -20px; }
+  html[data-skin="console"] .nav-icon { width: 20px; }
+  html[data-skin="console"] .nav-icon svg { width: 19px; height: 19px; }
+  html[data-skin="console"] .sidebar-foot { justify-content: center; }
+}
+
+@media (max-width: 767px) {
+  html[data-skin="workbench"] .scroll-area,
+  html[data-skin="journal"] .scroll-area,
+  html[data-skin="console"] .scroll-area { padding: 16px; }
+  html[data-skin="journal"] .hero-title { font-size: 23px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-skin] * { transition-duration: 0.01ms !important; }
+}

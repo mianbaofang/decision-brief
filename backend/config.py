@@ -2,7 +2,7 @@
 
 按优先级从高到低：
   1. 环境变量：CHOICE_LLM_API_KEY / CHOICE_LLM_MODEL / CHOICE_LLM_BASE_URL
-              CHOICE_WEATHER_KEY / CHOICE_WEATHER_CITY
+              CHOICE_WEATHER_KEY / CHOICE_WEATHER_BASE_URL / CHOICE_WEATHER_CITY
   2. SQLite config 表（UI 设置页写入，落盘到 choice.db）
   3. ~/.choice/config.json（CLI config --save 写入，权限 0600，兼容旧版）
 
@@ -12,7 +12,7 @@
   - ponytail: SQLite 中 API Key 明文存储，升级路径为 AES-256-GCM 加密。
 
 天气服务从 v0.7.0 起从和风天气切换到高德开放平台，配置字段：
-  - 主字段：weather_key（高德 Key） + weather_city
+  - 主字段：weather_key（高德 Key） + weather_base_url + weather_city
   - 兼容字段：weather_appsecret（旧版和风 Key，读取时自动当作 weather_key）
 """
 
@@ -30,6 +30,7 @@ CONFIG_KEYS = (
     "llm_model",
     "llm_base_url",
     "weather_key",       # 主字段（高德 Key）
+    "weather_base_url",  # 高德天气接口地址（用户自配）
     "weather_appsecret", # 兼容字段（旧和风 Key，自动映射到 weather_key）
     "weather_city",
 )
@@ -40,16 +41,13 @@ ENV_KEY_MAP = {
     "llm_model": "CHOICE_LLM_MODEL",
     "llm_base_url": "CHOICE_LLM_BASE_URL",
     "weather_key": "CHOICE_WEATHER_KEY",
+    "weather_base_url": "CHOICE_WEATHER_BASE_URL",
     "weather_appsecret": "CHOICE_WEATHER_APPSECRET",  # 兼容旧变量名
     "weather_city": "CHOICE_WEATHER_CITY",
 }
 
 # 敏感键（回显时脱敏）
 SENSITIVE_KEYS = ("llm_api_key", "weather_key", "weather_appsecret")
-
-# 内置高德天气 Key（日调用 10 万次免费额度，开箱即用）
-BUILTIN_WEATHER_KEY = "9f0126c5a8c28ea743c21d69e3bb35b4"
-
 
 def _read_config_file() -> Dict[str, Any]:
     """从 ~/.choice/config.json 读取（不存在或解析失败返回空 dict）。"""
@@ -107,10 +105,6 @@ def get_effective_config() -> Dict[str, Any]:
         if val:
             cfg[k] = val
 
-    # 内置兜底：天气 Key 未配置时使用内置 Key（10 万次/日免费额度）
-    if not cfg.get("weather_key"):
-        cfg["weather_key"] = BUILTIN_WEATHER_KEY
-
     return cfg
 
 
@@ -157,11 +151,11 @@ def has_llm_config(config: Dict[str, Any] = None) -> bool:
 def has_weather_config(config: Dict[str, Any] = None) -> bool:
     """判断是否具备真实调用天气 API 的最小条件。
 
-    高德天气 API 只需 weather_key（city 可选，未配置时默认北京）。
+    开源版要求用户同时提供 weather_key 和 weather_base_url；city 可选，默认北京。
     兼容旧版：weather_appsecret 也会被当作 key 使用。
     """
     cfg = config or get_effective_config()
-    return bool(cfg.get("weather_key") or cfg.get("weather_appsecret"))
+    return bool((cfg.get("weather_key") or cfg.get("weather_appsecret")) and cfg.get("weather_base_url"))
 
 
 # ─── 用户偏好（preferences）─────────────────────────────────────
@@ -170,6 +164,7 @@ PREF_KEYS = (
     "language",        # 'zh-CN' / 'yue' / 'en' / 'fr' / 'ja' / 'es'
     "default_mode",    # 'auto' / 'rational' / 'random' / 'nature' / 'dialogue' / 'fengshui'
     "theme",           # 'light' / 'dark' / 'auto'
+    "skin",            # 'heritage' / 'workbench' / 'journal' / 'console'
     "logo",            # Logo id
     "auto_speak",      # bool
     "tts_rate",        # float 0.5-1.5
@@ -183,6 +178,7 @@ DEFAULT_PREFS: Dict[str, Any] = {
     "language": "zh-CN",
     "default_mode": "auto",
     "theme": "auto",
+    "skin": "heritage",
     "logo": "tree1",
     "auto_speak": True,
     "tts_rate": 0.95,
